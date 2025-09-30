@@ -24,5 +24,9 @@ public class Jugador {
     public int getEdad(){
         return this.edad;
     }
+    Jugador(String elNombre, int laEdad){
+        this.nombre = elNombre;
+        this.edad = laEdad;
+    }
     
 }
