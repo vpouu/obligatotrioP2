@@ -13,6 +13,7 @@ public class Auxiliar {
         System.out.println("=====================");
         System.out.println("");
     }
+    
     public static int ingresarNumero(String texto, int min) {
         return ingresarNumero(texto, min, Integer.MAX_VALUE);
     }
