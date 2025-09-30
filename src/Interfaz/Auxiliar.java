@@ -4,10 +4,14 @@
  */
 package Interfaz;
 
-/**
- *
- * @author victo
- */
+
 public class Auxiliar {
+
+    public static void imprimirTitulo(String titulo) {
+        System.out.println("=====================");
+        System.out.println(titulo);
+        System.out.println("=====================");
+        System.out.println("");
+    }
     
 }
