@@ -26,7 +26,6 @@ public class Jugador implements Comparable<Jugador>{
     public int getEdad(){
         return this.edad;
     }
-<<<<<<< Updated upstream
     public int getCantJugadas(){
         return this.cantGanadas;
     }
@@ -55,9 +54,6 @@ public class Jugador implements Comparable<Jugador>{
     public Jugador(String elNombre, int laEdad){
         this.cantGanadas = 0;
         this.cantJugadas = 0;
-=======
-    public Jugador(String elNombre, int laEdad){
->>>>>>> Stashed changes
         this.nombre = elNombre;
         this.edad = laEdad;
         

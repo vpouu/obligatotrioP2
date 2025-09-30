@@ -34,10 +34,9 @@ public class Programa {
                     System.out.println("");
                     break;
                 case "d":
-                    Auxiliar.imprimirTitulo("Piso con apartamento más caro");
-                    System.out.print("El piso con el apartamento más caro en el edificio es: ");
-                    System.out.println(edificio.getPisoApartamentoMasCaro());
-                    System.out.println("");
+                    Auxiliar.imprimirTitulo("Lista de invictos: ");
+                    System.out.println(sistema.listaInvictos());
+                    //check que funcione sout
                     break;
             }
         }
