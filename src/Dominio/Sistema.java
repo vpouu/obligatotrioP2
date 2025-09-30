@@ -25,4 +25,26 @@ public class Sistema {
     public void agregarJugador(Jugador elJugador){
         listaJugadores.add(elJugador);       
     }
-}
+
+    public ArrayList<Jugador> ordenarAlfabetic(){
+        Collections.sort(listaJugadores);
+        return listaJugadores;
+         
+    }
+    public ArrayList<Jugador> listaInvictos(){
+        ArrayList<Jugador> listaOrdenada= ordenarAlfabetic();
+        ArrayList<Jugador> listaInvictos= new ArrayList<>();
+        for(Jugador jugador: listaOrdenada){
+            if(jugador.esInvicto()){
+                listaInvictos.add(jugador);
+                
+            }
+        }
+        return listaInvictos;
+        
+    
+    }
+    //hacer uno que ordene decreciente por cantidad partidas ganadas
+    
+ }
+
