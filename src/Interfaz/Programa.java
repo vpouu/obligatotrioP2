@@ -51,4 +51,13 @@ public class Programa {
 
         System.out.println("");
     }
+    public static void mostrarMenu(){
+        String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU)"
+                + "a)Registrar jugador"
+                + "b)Comienzo de partida común"
+                + "c)Continuación de partida"
+                + "d)Terminar el programa";
+        System.out.println(menu);
+              
+    }
 }
