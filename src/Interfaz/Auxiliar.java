@@ -13,22 +13,27 @@ public class Auxiliar {
         System.out.println("=====================");
         System.out.println("");
     }
-    public static int ingresarNumero(String texto, int min) {
-        return ingresarNumero(texto, min, Integer.MAX_VALUE);
-    }
 
-    public static int ingresarNumero(String texto, int min, int max) {
-        int ret = Integer.MIN_VALUE;
+    public static String ingresarLetra(String texto) {
         Scanner in = new Scanner(System.in);
-
-        while (ret < min || ret > max) {
-            System.out.print(texto);
-            ret = in.nextInt();
-            if (ret < min || ret > max) {
-                System.out.println("Ingreso es inválido.");
+        boolean valido=false;
+        String [] letras={"a","b","c","d","e"};
+        System.out.print(texto);
+        String ret = in.nextLine();
+        for(String opcion:letras){
+            if(opcion.equalsIgnoreCase(ret)){
+                valido=true;
             }
         }
-
+        while (!valido){
+            System.out.println("la letra ingresada no es válida");
+            ret = in.nextLine();
+            for(String opcion:letras){
+                if(opcion.equalsIgnoreCase(ret)){
+                    valido=true;
+                }
+            }
+        }
         System.out.println("");
         
         return ret;
