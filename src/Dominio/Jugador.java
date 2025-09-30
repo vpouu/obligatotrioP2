@@ -1,7 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ Martina Gonzalez y Victoria Pou*/
 package Dominio;
 
 
@@ -28,6 +26,7 @@ public class Jugador implements Comparable<Jugador>{
     public int getEdad(){
         return this.edad;
     }
+<<<<<<< Updated upstream
     public int getCantJugadas(){
         return this.cantGanadas;
     }
@@ -56,6 +55,9 @@ public class Jugador implements Comparable<Jugador>{
     public Jugador(String elNombre, int laEdad){
         this.cantGanadas = 0;
         this.cantJugadas = 0;
+=======
+    public Jugador(String elNombre, int laEdad){
+>>>>>>> Stashed changes
         this.nombre = elNombre;
         this.edad = laEdad;
         

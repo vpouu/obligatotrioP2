@@ -39,4 +39,10 @@ public class Auxiliar {
         
         return ret;
     }
+    public static int ingresarNumero(String texto) {
+        Scanner in = new Scanner(System.in);
+        System.out.print(texto);
+        int ret = in.nextInt();
+        return ret;
+    }
 }
