@@ -13,10 +13,35 @@ public class Tablero {
         this.matrizLogica = new String[3][6];
         
     }
-    /*
-    public void analizarEntrada(){}
-    public String agregarMovimiento(String movimiento){
+    
+    //public void analizarEntrada(){}
+    public String[][] agregarMovimiento(String movimiento){
+        String movMayus = movimiento.toUpperCase();
+        char fila = movMayus.charAt(0);
+        char col = movMayus.charAt(1);
+        String dibujo = "" + movMayus.charAt(2)+turno;
+        char arr[] = {'A','B','C'};
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==fila){
+                if(dibujo.charAt(0)=='I'){
+                    if(matrizLogica[i][col].equals("C")){
+                        matrizLogica[i][col]="D";
+                    }else{
+                        matrizLogica[i][col]="C";
+                    }
+                    
+                    
+                }else{
+                    matrizLogica[i][col]=dibujo;
+                }
+                
+            }
+        }
+        return matrizLogica;
     }
+    //public String
+    //si es I y no hay ninguna que hago
+    /*● ○
     public boolean terminarPartida(){
     }
     public int quienGano(){
