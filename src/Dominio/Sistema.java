@@ -11,6 +11,7 @@ public class Sistema {
     
     
     private ArrayList<Jugador> listaJugadores;
+    //hacer getter o setter de la lista?
     public boolean nombreEsUnico(String elNombre){
         boolean esUnico = true;
         for(Jugador jugador: listaJugadores){
@@ -22,6 +23,7 @@ public class Sistema {
                 
     
     }
+    //es un set?
     public void agregarJugador(Jugador elJugador){
         listaJugadores.add(elJugador);       
     }
