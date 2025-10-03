@@ -1,5 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
-package Dominio;
+
+package dominio;
 
 
 public class Tablero {
@@ -15,6 +20,7 @@ public class Tablero {
     }
     
     //public void analizarEntrada(){}
+    //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
     public String[][] agregarMovimiento(String movimiento){
         String movMayus = movimiento.toUpperCase();
         char fila = movMayus.charAt(0);

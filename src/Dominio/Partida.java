@@ -1,9 +1,12 @@
-package Dominio;
+package dominio;
 
 public class Partida {
     private Jugador jugador1;
     private Jugador jugador2;
     private Tablero tablero;
+    //ganador
+    //cual es el turno
+    //xq por ej si es x ya termina el juego
     
     public Jugador ganador (){
         Jugador ret;
