@@ -1,6 +1,6 @@
 /* Victoria Pou y Martina Gonzalez*/
 
-package Interfaz;
+package interfaz;
 
 import java.util.Scanner;
 
