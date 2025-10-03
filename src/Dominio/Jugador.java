@@ -1,6 +1,6 @@
 /*
  Martina Gonzalez y Victoria Pou*/
-package Dominio;
+package dominio;
 
 
 /**

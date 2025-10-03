@@ -1,7 +1,7 @@
 //renombrar packeges con minuscula
 //hacer cantPartidasGanas++ cuando un jugador gana una partida
-package Interfaz;
-import Dominio.*;
+package interfaz;
+import dominio.*;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
