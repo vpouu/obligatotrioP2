@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package interfaz;
 
-import dominio.Sistema;
-import dominio.Jugador;
-import java.util.Scanner;
+import dominio.*;
 
-/**
- *
- * @author Usuario
- */
+
 public class Interfaz {
     private final Sistema sistema;
 
@@ -31,7 +23,7 @@ public class Interfaz {
                     registrarJugador();
                     break;
                 case "b":
-                    empezarPartidas();
+                    empezarPartida();
                     break;
                 case "c":
                     Auxiliar.imprimirTitulo("Costo promedio de apartamento");
@@ -49,8 +41,8 @@ public class Interfaz {
             }
         }
     }
-    public void empezarPartidas(){
-        
+    public void empezarPartida(){
+        //elegir jugador a participar, new partida, 
     }
     public void mostrarMatrizLogica (String [][] matLogica){
         String separador= "+--+--+--+--+--+--+";
