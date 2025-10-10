@@ -16,6 +16,15 @@ public class Sistema {
     public Sistema (){
         listaJugadores= new ArrayList<>();
     }
+
+    public ArrayList<Jugador> getListaJugadores() {
+        return listaJugadores;
+    }
+
+    public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+    
     public boolean nombreEsUnico(String elNombre){
         boolean esUnico = true;
         for(Jugador jugador: listaJugadores){
