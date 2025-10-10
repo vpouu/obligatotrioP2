@@ -1,6 +1,6 @@
 
 package interfaz;
-
+//tengo qwue explicar en serio como se juega???????
 import dominio.*;
 
 
@@ -64,7 +64,23 @@ public class Interfaz {
         while(!termino){
             String [][] matLogica=partida.getTablero().getMatrizLogica();
             mostrarMatrizLogica(matLogica);
+            mostrarMenuJugando();
+  
+            termino=true;
         }
+    }
+    public void mostrarMenuJugando(){
+        String ret="Puede ingresar: \n"
+                + "-FilaColumnaSentido (ej.: A2C), para colocar su ficha (circulitos)"
+                + " \tab Fila: A, B o C"
+                + " \tab Columna: 1 a 6"
+                + " \tab Sentido C o D"
+                + "-FilColumnaI (ej.:A2I) si quiere invertir una ficha propia, de C pasa a D o al revés (se indica la filas y columnas de la forma arriba)"
+                + "'X', si usted quiere terminar la partida y perder"
+                + "'H' si quiere ayuda"
+                + "'B' si quiere ver los títulos en los bordes"
+                + "'N' si no quiere ver los títulos en los bordes"
+                + "'T', si termina en empate";
     }
     public void mostrarMatrizLogica (String [][] matLogica){
         String separador= "+--+--+--+--+--+--+";

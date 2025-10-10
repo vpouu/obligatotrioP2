@@ -36,6 +36,7 @@ public class Tablero {
     
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
+    //validar que jugador invierta solo las d ee´l
     public String[][] agregarMovimiento(String movimiento){
         String movMayus = movimiento.toUpperCase();
         char fila = movMayus.charAt(0);
@@ -46,9 +47,9 @@ public class Tablero {
             if(arr[i]==fila){
                 if(dibujo.charAt(0)=='I'){
                     if(matrizLogica[i][col].equals("C")){
-                        matrizLogica[i][col]="D";
+                        matrizLogica[i][col]="D"+turno;
                     }else{
-                        matrizLogica[i][col]="C";
+                        matrizLogica[i][col]="C"+turno;
                     }
                     
                     
@@ -62,12 +63,30 @@ public class Tablero {
         cambiarTurno();
         return matrizLogica;
     }
-    public int cambiarTurno (){
-        int elTurno=1;
-        if(this.turno==elTurno){
+    public boolean puedoInvertirFicha(String movimiento){
+        boolean ret=false;
+        char arr[] = {'A','B','C'};
+        char fila=movimiento.charAt(0);
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==fila){
+                if(!matrizLogica[i][movimiento.charAt(1)-1].equals(null)){
+                    if(matrizLogica[i][movimiento.charAt(1)-1].charAt(1)==turno){
+                        ret=true;
+                        agregarMovimiento(movimiento);
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+                        
+    public void cambiarTurno(){
+        if(this.turno==1){
             this.turno=2;
-        } 
-        return turno;
+        } else{
+            this.turno=1;
+        }
+      
     }
     //public String
     //si es I y no hay ninguna que hago
