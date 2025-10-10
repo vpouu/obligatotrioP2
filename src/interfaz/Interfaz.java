@@ -32,7 +32,7 @@ public class Interfaz {
                     System.out.println("");
                     break;
                 case "d":
-                    Auxiliar.imprimirTitulo("Lista de invictos: ");
+                    Auxiliar.imprimirTitulo("Ranking de invictos: ");
                     System.out.println(this.sistema.listaInvictos());
                     System.out.println("");
                     //check que funcione sout
@@ -44,7 +44,7 @@ public class Interfaz {
     }
     public void empezarPartida(){
         
-        boolean imprimio =Auxiliar.imprimirLista(sistema.getListaJugadores(), "Se necesitan al menos dos jugadores", 2);
+        boolean imprimio =Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
         int numJugador1 = 0;
         int numJugador2 = 0;
         String mensajeError = "Elija un número de los que aparecen en la lista";
@@ -55,9 +55,16 @@ public class Interfaz {
             Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
             Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
             Partida partida = new Partida(jugador1, jugador2);
-            
+            jugando(partida);
         }
         //elegir jugador a participar, new partida, 
+    }
+    public void jugando(Partida partida){
+        boolean termino=false;
+        while(!termino){
+            String [][] matLogica=partida.getTablero().getMatrizLogica();
+            mostrarMatrizLogica(matLogica);
+        }
     }
     public void mostrarMatrizLogica (String [][] matLogica){
         String separador= "+--+--+--+--+--+--+";
@@ -73,6 +80,7 @@ public class Interfaz {
             System.out.println(separador);                  
         }
     }
+    //darCirculito va en intefaz
     public String darCiruclito (int i, int k, int j, String [][] matLogica){
         String circulito="";
         String ret="  ";
@@ -103,11 +111,13 @@ public class Interfaz {
         this.sistema.agregarJugador(jugador);
     }
     public void mostrarMenu(){
-        String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU)"
-                + "a)Registrar jugador"
-                + "b)Comienzo de partida común"
-                + "c)Continuación de partida"
-                + "d)Terminar el programa";
+        String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n"
+                + "a)Registrar jugador \n"
+                + "b)Comienzo de partida común \n"
+                + "c)Continuación de partida \n"
+                + "d)Mostrar ranking de invictos \n"
+                + "e)Salir del programa";
+        
         System.out.println(menu);
               
     }

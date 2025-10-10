@@ -17,6 +17,12 @@ public class Jugador implements Comparable<Jugador>{
         this.nombre = elNombre;
     
     }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+    
     public String getNombre(){
         return this.nombre;
     }

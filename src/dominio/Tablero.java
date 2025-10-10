@@ -11,6 +11,23 @@ public class Tablero {
         this.turno = 1;
         this.matrizLogica = new String[3][6];
         
+        
+    }
+
+    public String[][] getMatrizLogica() {
+        return matrizLogica;
+    }
+
+    private void setMatrizLogica(String[][] matrizLogica) {
+        this.matrizLogica = matrizLogica;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
     }
     public int quienGano(){
         //TO DO: definir quien gano

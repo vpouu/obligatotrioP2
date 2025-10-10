@@ -2,7 +2,32 @@ package dominio;
 
 public class Partida {
     private Jugador jugador1;
+    private Jugador jugador2;
+    private Tablero tablero;
+    // esta bien ???????
+    private Jugador jugadorActual;
 
+    public Jugador getJugadorActual() {
+        this.jugadorActual=jugador2;
+        if(tablero.getTurno()==1){
+            this.jugadorActual=jugador1;
+        }
+        return jugadorActual;
+    
+    }
+    public void setJugadorActual(Jugador jugadorActual) {
+        this.jugadorActual = jugadorActual;
+    }
+    
+    public String jugadorBlaONeg(){
+        String ret="Blanco";
+        if(this.tablero.getTurno()==2){
+            ret="Negro";
+        }
+        return ret;
+    }
+      
+    
     public Jugador getJugador1() {
         return jugador1;
     }
@@ -26,8 +51,7 @@ public class Partida {
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
-    private Jugador jugador2;
-    private Tablero tablero;
+
     //ganador
     //cual es el turno
     //xq por ej si es x ya termina el juego
@@ -46,7 +70,7 @@ public class Partida {
         this.jugador2=j2;
         this.tablero=new Tablero();
     }
-    
+    public devolverTurno=
     
     
 }
