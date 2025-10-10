@@ -42,14 +42,15 @@ public class Tablero {
             }
         }
         //ver su es apropiadocamviar turno aca
-        
+        cambiarTurno();
         return matrizLogica;
     }
-    public int cambiarTurno (){
-        int elTurno=1;
-        if(this.turno==elTurno){
-            this.turno=2
-        } 
+    public void cambiarTurno (){
+        if(this.turno==1){
+            this.turno=2;
+        }else{
+            this.turno=1;
+        }
     }
     //public String
     //si es I y no hay ninguna que hago
