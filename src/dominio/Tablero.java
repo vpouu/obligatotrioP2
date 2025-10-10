@@ -45,12 +45,12 @@ public class Tablero {
         cambiarTurno();
         return matrizLogica;
     }
-    public void cambiarTurno (){
-        if(this.turno==1){
+    public int cambiarTurno (){
+        int elTurno=1;
+        if(this.turno==elTurno){
             this.turno=2;
-        }else{
-            this.turno=1;
-        }
+        } 
+        return turno;
     }
     //public String
     //si es I y no hay ninguna que hago
