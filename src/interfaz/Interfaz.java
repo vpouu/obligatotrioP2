@@ -29,10 +29,10 @@ public class Interfaz {
 
             switch (opcion) {
                 case "a":
-                    registrarJugador(sistema);
+                    registrarJugador();
                     break;
                 case "b":
-                    empezarPartidas(sistema);
+                    empezarPartidas();
                     break;
                 case "c":
                     Auxiliar.imprimirTitulo("Costo promedio de apartamento");
@@ -42,13 +42,16 @@ public class Interfaz {
                     break;
                 case "d":
                     Auxiliar.imprimirTitulo("Lista de invictos: ");
-                    System.out.println(sistema.listaInvictos());
+                    System.out.println(this.sistema.listaInvictos());
                     //check que funcione sout
                     break;
             }
         }
     }
-    public static void mostrarMatrizLogica (String [][] matLogica){
+    public void empezarPartidas(){
+        
+    }
+    public void mostrarMatrizLogica (String [][] matLogica){
         String separador= "+--+--+--+--+--+--+";
         System.out.println(separador);
         for (int i = 0; i < matLogica.length; i++) {
@@ -62,7 +65,7 @@ public class Interfaz {
             System.out.println(separador);                  
         }
     }
-    public static String darCiruclito (int i, int k, int j, String [][] matLogica){
+    public String darCiruclito (int i, int k, int j, String [][] matLogica){
         String circulito="";
         String ret="  ";
         if(null!=matLogica[i][j]){
@@ -82,18 +85,18 @@ public class Interfaz {
         return ret;
         
     }
-    public static void empezarPartidas(Sistema sistema){
+    public void empezarPartidas(Sistema sistema){
         
     }
-    public static void registrarJugador(Sistema sistema){
+    public void registrarJugador(){
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
-        String nom = ingresarNombre(sistema);
+        String nom = ingresarNombre();
         int edad = Auxiliar.ingresarNumero("ingresar edad");
         Jugador jugador=new Jugador(nom,edad);
-        sistema.agregarJugador(jugador);
+        this.sistema.agregarJugador(jugador);
     }
-    public static void mostrarMenu(){
+    public void mostrarMenu(){
         String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU)"
                 + "a)Registrar jugador"
                 + "b)Comienzo de partida común"
@@ -102,15 +105,12 @@ public class Interfaz {
         System.out.println(menu);
               
     }
-    public static String ingresarNombre (Sistema sistema){
-        Scanner in = new Scanner(System.in);
-        Auxiliar.imprimirTitulo("Ingresar nombre");
-        String nombre=in.nextLine();
-        boolean valido=sistema.nombreEsUnico(nombre);
+    public String ingresarNombre (){
+        String nombre=Auxiliar.ingresarPalabras("Ingrese nombre");
+        boolean valido=this.sistema.nombreEsUnico(nombre);
         while(!valido){
-            System.out.println("nombre repetido, reingrese nombre");
-            nombre=in.nextLine();       
-            valido=sistema.nombreEsUnico(nombre);
+            nombre=Auxiliar.ingresarPalabras("Reingrese nombre, el nombre que ingreso anteriormente ya está registado");
+            valido=this.sistema.nombreEsUnico(nombre);
         }
         return nombre;
     }

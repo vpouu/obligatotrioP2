@@ -44,4 +44,9 @@ public class Auxiliar {
         int ret = in.nextInt();
         return ret;
     }
+    public static String ingresarPalabras (String texto){
+        Scanner in = new Scanner(System.in);
+        System.out.print(texto);
+        return in.nextLine();
+    }
 }
