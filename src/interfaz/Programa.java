@@ -1,28 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Interfaz;
+//renombrar packeges con minuscula
+//hacer cantPartidasGanas++ cuando un jugador gana una partida
+package interfaz;
+import dominio.Sistema;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
-import dominio.*;
-import interfaz.Auxiliar;
-import static interfaz.Programa.empezarPartidas;
-import static interfaz.Programa.mostrarMenu;
-import static interfaz.Programa.registrarJugador;
-import java.util.Scanner;
 
-/**
- *
- * @author Usuario
- */
-public class Interfaz {
-    private Sistema sistema;
-
-    public Interfaz(Sistema sistema) {
-        this.sistema = sistema;
-    }
-     public void iniciar(){
-        Auxiliar.imprimirTitulo("MEDIO TA TE TI");
+public class Programa {
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
+        Sistema sistema=new Sistema();
+        Interfaz interfaz=new Interfaz(sistema);
+        interfaz.iniciar();
+    }/*
+    public static void iniciar(){
+        Sistema sistema=new Sistema();
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
             mostrarMenu();
@@ -48,40 +41,6 @@ public class Interfaz {
                     break;
             }
         }
-    }
-    public static void mostrarMatrizLogica (String [][] matLogica){
-        String separador= "+--+--+--+--+--+--+";
-        System.out.println(separador);
-        for (int i = 0; i < matLogica.length; i++) {
-            for(int k=1; k<=3;k++){
-                String cadena="|";
-                for (int j = 0; j < matLogica[i].length; j++) {
-                    cadena +=darCiruclito(i,k,j,matLogica)+"|";
-                }
-                System.out.println(cadena);
-            }
-            System.out.println(separador);                  
-        }
-    }
-    public static String darCiruclito (int i, int k, int j, String [][] matLogica){
-        String circulito="";
-        String ret="  ";
-        if(null!=matLogica[i][j]){
-            if(matLogica[i][j].charAt(1)=='1'){
-                circulito="o";
-            }else{
-                circulito="●";
-            }
-            char COD=matLogica[i][j].toUpperCase().charAt(0);
-            if((COD=='C' && k%2!=0) || (COD=='D'&&k%2==0)){
-                ret=" "+ circulito;
-            }else{
-                ret=circulito + " ";
-            }
-            
-        }
-        return ret;
-        
     }
     public static void empezarPartidas(Sistema sistema){
         
@@ -114,7 +73,5 @@ public class Interfaz {
             valido=sistema.nombreEsUnico(nombre);
         }
         return nombre;
-    }
-            
-
+    }*/
 }

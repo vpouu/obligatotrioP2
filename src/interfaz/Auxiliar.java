@@ -15,13 +15,12 @@ public class Auxiliar {
     }
     
 
-    public static String ingresarLetra(String texto) {
+    public static String ingresarLetra(String texto, String [] opciones) {
         Scanner in = new Scanner(System.in);
         boolean valido=false;
-        String [] letras={"a","b","c","d","e"};
         System.out.print(texto);
         String ret = in.nextLine();
-        for(String opcion:letras){
+        for(String opcion:opciones){
             if(opcion.equalsIgnoreCase(ret)){
                 valido=true;
             }
@@ -29,7 +28,7 @@ public class Auxiliar {
         while (!valido){
             System.out.println("la letra ingresada no es válida");
             ret = in.nextLine();
-            for(String opcion:letras){
+            for(String opcion:opciones){
                 if(opcion.equalsIgnoreCase(ret)){
                     valido=true;
                 }

@@ -18,6 +18,10 @@ public class Tablero {
         this.matrizLogica = new String[3][6];
         
     }
+    public int quienGano(){
+        //TO DO: definir quien gano
+        return 0;
+    }
     
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en

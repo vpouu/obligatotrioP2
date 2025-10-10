@@ -13,6 +13,9 @@ public class Sistema {
     //suma poner comentarios
     private ArrayList<Jugador> listaJugadores;
     //hacer getter o setter de la lista?
+    public Sistema (){
+        listaJugadores= new ArrayList<>();
+    }
     public boolean nombreEsUnico(String elNombre){
         boolean esUnico = true;
         for(Jugador jugador: listaJugadores){

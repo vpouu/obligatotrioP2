@@ -1,24 +1,31 @@
-//renombrar packeges con minuscula
-//hacer cantPartidasGanas++ cuando un jugador gana una partida
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package interfaz;
-import dominio.*;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
 
+import dominio.Sistema;
+import dominio.Jugador;
+import interfaz.Auxiliar;
+import java.util.Scanner;
 
-public class Programa {
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
-        iniciar();
-    }/*
-    public static void iniciar(){
-        Sistema sistema=new Sistema();
+/**
+ *
+ * @author Usuario
+ */
+public class Interfaz {
+    private Sistema sistema;
+
+    public Interfaz(Sistema elS) {
+        this.sistema = elS;
+    }
+     public void iniciar(){
+        Auxiliar.imprimirTitulo("MEDIO TA TE TI");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
             mostrarMenu();
-            opcion = Auxiliar.ingresarLetra("Ingresar opción: ");
+            String [] letrasValidas={"a","b","c","d","e"};
+            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas);
 
             switch (opcion) {
                 case "a":
@@ -30,7 +37,7 @@ public class Programa {
                 case "c":
                     Auxiliar.imprimirTitulo("Costo promedio de apartamento");
                     System.out.print("El costo promedio de los apartamentos en el edificio es: ");
-                    System.out.println(edificio.getCostoPromedioApartamento());
+                    //System.out.println(edificio.getCostoPromedioApartamento());
                     System.out.println("");
                     break;
                 case "d":
@@ -40,6 +47,40 @@ public class Programa {
                     break;
             }
         }
+    }
+    public static void mostrarMatrizLogica (String [][] matLogica){
+        String separador= "+--+--+--+--+--+--+";
+        System.out.println(separador);
+        for (int i = 0; i < matLogica.length; i++) {
+            for(int k=1; k<=3;k++){
+                String cadena="|";
+                for (int j = 0; j < matLogica[i].length; j++) {
+                    cadena +=darCiruclito(i,k,j,matLogica)+"|";
+                }
+                System.out.println(cadena);
+            }
+            System.out.println(separador);                  
+        }
+    }
+    public static String darCiruclito (int i, int k, int j, String [][] matLogica){
+        String circulito="";
+        String ret="  ";
+        if(null!=matLogica[i][j]){
+            if(matLogica[i][j].charAt(1)=='1'){
+                circulito="o";
+            }else{
+                circulito="●";
+            }
+            char COD=matLogica[i][j].toUpperCase().charAt(0);
+            if((COD=='C' && k%2!=0) || (COD=='D'&&k%2==0)){
+                ret=" "+ circulito;
+            }else{
+                ret=circulito + " ";
+            }
+            
+        }
+        return ret;
+        
     }
     public static void empezarPartidas(Sistema sistema){
         
@@ -72,5 +113,7 @@ public class Programa {
             valido=sistema.nombreEsUnico(nombre);
         }
         return nombre;
-    }*/
+    }
+            
+
 }
