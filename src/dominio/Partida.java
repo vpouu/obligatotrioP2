@@ -70,7 +70,7 @@ public class Partida {
         this.jugador2=j2;
         this.tablero=new Tablero();
     }
-    public devolverTurno=
+    
     
     
 }
