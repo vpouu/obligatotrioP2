@@ -42,6 +42,20 @@ public class Interfaz {
         }
     }
     public void empezarPartida(){
+        
+        boolean imprimio =Auxiliar.imprimirLista(sistema.listaJugadores, "Se necesitan al menos dos jugadores", 2);
+        int numJugador1 = 0;
+        int numJugador2 = 0;
+        String mensajeError = "Elija un número de los que aparecen en la lista";
+        if(imprimio){
+            
+            numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.listaJugadores.size(),mensajeError);
+            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del jugador 2",1,sistema.listaJugadores.size(),mensajeError);
+            Jugador jugador1 = sistema.listaJugadores.get(numJugador1 - 1);
+            Jugador jugador2 = sistema.listaJugadores.get(numJugador2 - 1);
+            Partida partida = new Partida(jugador1, jugador2);
+            
+        }
         //elegir jugador a participar, new partida, 
     }
     public void mostrarMatrizLogica (String [][] matLogica){
