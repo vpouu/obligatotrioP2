@@ -72,6 +72,9 @@ public class Interfaz {
             mostrarMenuJugando();
   
             termino=true;
+            if(leerEntrada){
+                termino = true;
+            }
         }
     }
     public void mostrarMenuJugando(){
@@ -94,7 +97,7 @@ public class Interfaz {
             for(int k=1; k<=3;k++){
                 String cadena="|";
                 for (int j = 0; j < matLogica[i].length; j++) {
-                    cadena +=darCiruclito(i,k,j,matLogica)+"|";
+                    cadena +=darCirculito(i,k,j,matLogica)+"|";
                 }
                 System.out.println(cadena);
             }
@@ -102,7 +105,7 @@ public class Interfaz {
         }
     }
     //darCirculito va en intefaz
-    public String darCiruclito (int i, int k, int j, String [][] matLogica){
+    public String darCirculito (int i, int k, int j, String [][] matLogica){
         String circulito="";
         String ret="  ";
         if(null!=matLogica[i][j]){
@@ -121,6 +124,54 @@ public class Interfaz {
         }
         return ret;
         
+    }
+    public String []generarArrayOpcionesValidas(){
+        String [] cadenaFilas = {"A","B","c"};
+        String [] cadenaColumnas = {"1","2","3"};
+        String [] cadenaSentidos = {"C","D","I"};
+        String [] cadenasPosibles = new int[32];
+
+        for(int i=0 ; i<cadenaFilas.length; i++){
+            for (int j = 0; j < cadenaColumnas.length; j++) {
+                for(int k=0; k<cadenaSentidos.length; k++){
+                    cadenasPosibles = ""+cadenaFilas.charAt(i)+cadenaColumnas.charAt(j)+cadenaSentidos(k);
+
+                }
+                
+            }
+        }
+        cadenasPosibles[]
+    
+}
+//tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
+    public boolean leerEntrada(){
+        boolean termino = false;
+        generarArrayOpcionesValidas();
+        Auxiliar.ingresarLetra("Ingrese jugada",)
+
+            switch (opcion) {
+                case :
+                   
+                    System.out.println("");
+                    break;
+                case "B"://pero puede ser minuscula tmb
+                    
+                    System.out.println("");
+                    break;
+                case "N":
+                    
+                    System.out.println("");
+                    break;
+                case "T":
+                    
+                    System.out.println("");
+                    //check que funcione sout
+                    break;
+                default:
+                    break;
+            }
+        }
+        return termino;
     }
    
     public void registrarJugador(){
