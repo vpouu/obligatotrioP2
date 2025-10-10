@@ -44,6 +44,8 @@ public class Interfaz {
                     System.out.println(this.sistema.listaInvictos());
                     //check que funcione sout
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -84,9 +86,7 @@ public class Interfaz {
         return ret;
         
     }
-    public void empezarPartidas(Sistema sistema){
-        
-    }
+   
     public void registrarJugador(){
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
