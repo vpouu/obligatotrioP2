@@ -59,10 +59,15 @@ public class Interfaz {
         }
         //elegir jugador a participar, new partida, 
     }
+    public void mostrarTurno(Partida partida){
+        String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " ( " + partida.getJugadorActual();
+        System.out.println(ret);
+    }
     public void jugando(Partida partida){
         boolean termino=false;
         while(!termino){
             String [][] matLogica=partida.getTablero().getMatrizLogica();
+            mostrarTurno(partida);
             mostrarMatrizLogica(matLogica);
             mostrarMenuJugando();
   

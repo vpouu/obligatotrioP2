@@ -80,4 +80,5 @@ public class Auxiliar {
         System.out.println(texto);
         return in.nextLine();
     }
+    //cuando me pide ingresar la edad si le pongo una letra se rompe el porgrama
 }
