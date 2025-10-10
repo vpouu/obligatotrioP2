@@ -12,7 +12,7 @@ public class Programa {
     public static void main(String[] args) throws UnsupportedEncodingException {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
         iniciar();
-    }
+    }/*
     public static void iniciar(){
         Sistema sistema=new Sistema();
         String opcion = "a";
@@ -72,5 +72,5 @@ public class Programa {
             valido=sistema.nombreEsUnico(nombre);
         }
         return nombre;
-    }
+    }*/
 }
