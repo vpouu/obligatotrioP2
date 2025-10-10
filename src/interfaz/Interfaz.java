@@ -6,7 +6,6 @@ package interfaz;
 
 import dominio.Sistema;
 import dominio.Jugador;
-import interfaz.Auxiliar;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,7 @@ import java.util.Scanner;
  * @author Usuario
  */
 public class Interfaz {
-    private Sistema sistema;
+    private final Sistema sistema;
 
     public Interfaz(Sistema elS) {
         this.sistema = elS;
