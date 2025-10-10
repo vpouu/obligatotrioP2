@@ -19,7 +19,7 @@ public class Sistema {
     public boolean nombreEsUnico(String elNombre){
         boolean esUnico = true;
         for(Jugador jugador: listaJugadores){
-            if(jugador.getNombre().equals(elNombre)){
+            if(jugador.getNombre().equalsIgnoreCase(elNombre)){
                 esUnico = false;
             }
         }

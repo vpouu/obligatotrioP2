@@ -48,8 +48,9 @@ public class Tablero {
     public int cambiarTurno (){
         int elTurno=1;
         if(this.turno==elTurno){
-            this.turno=2
+            this.turno=2;
         } 
+        return turno;
     }
     //public String
     //si es I y no hay ninguna que hago

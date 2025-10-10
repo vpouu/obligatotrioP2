@@ -21,19 +21,20 @@ public class Interfaz {
             switch (opcion) {
                 case "a":
                     registrarJugador();
+                    System.out.println("");
                     break;
                 case "b":
                     empezarPartida();
+                    System.out.println("");
                     break;
                 case "c":
-                    Auxiliar.imprimirTitulo("Costo promedio de apartamento");
-                    System.out.print("El costo promedio de los apartamentos en el edificio es: ");
-                    //System.out.println(edificio.getCostoPromedioApartamento());
+                    Auxiliar.imprimirTitulo("Continuacion de partida");
                     System.out.println("");
                     break;
                 case "d":
                     Auxiliar.imprimirTitulo("Lista de invictos: ");
                     System.out.println(this.sistema.listaInvictos());
+                    System.out.println("");
                     //check que funcione sout
                     break;
                 default:
