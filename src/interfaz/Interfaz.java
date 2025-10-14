@@ -66,13 +66,13 @@ public class Interfaz {
     public void jugando(Partida partida){
         boolean termino=false;
         while(!termino){
-            String [][] matLogica=partida.getTablero().getMatrizLogica();
             mostrarTurno(partida);
-            mostrarMatrizLogica(matLogica);
+            
+            mostrarMatrizLogica(partida);
             System.out.println(mostrarMenuJugando());
   
-            termino=true;
-            if(leerEntrada(partida)){
+            boolean siguePartida =leerEntrada(partida);
+            if(!siguePartida){
                 termino = true;
             }
         }
@@ -91,13 +91,24 @@ public class Interfaz {
                 + "'T', si termina en empate";
         return ret;
     }
-    public void mostrarMatrizLogica (String [][] matLogica){
+    public void mostrarMatrizLogica (Partida partida){
+    String matLogica [][] = partida.getTablero().getMatrizLogica();
+        boolean mostrarFilasYColumnas = partida.getTablero().getMostrarFilasYColumnas();
+        if(mostrarFilasYColumnas){
+            String numeros ="  1  2  3  4  5  6";
+            System.out.println(numeros);
+        }
         String separador= "+--+--+--+--+--+--+";
+        String filas = "ABC";
         System.out.println(separador);
         for (int i = 0; i < matLogica.length; i++) {
             for(int k=1; k<=3;k++){
                 String cadena="|";
+                if(k==2 && mostrarFilasYColumnas){
+                    cadena = ""+filas.charAt(i) +"|";
+                }
                 for (int j = 0; j < matLogica[i].length; j++) {
+                    
                     cadena +=darCirculito(i,k,j,matLogica)+"|";
                 }
                 System.out.println(cadena);
@@ -141,13 +152,21 @@ public class Interfaz {
                 
             }
         }
+        String [] letras = {"B","N","T","H","X"};
+        for(int i=27; i<32; i++){
+            for (int j = 0; j < letras.length; j++) {
+                cadenasPosibles[i] = letras[j];
+            }
         return cadenasPosibles;
+             
+}
     
 }
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
     public boolean leerEntrada(Partida partida){
         boolean termino = false;
-        generarArrayOpcionesValidas();
+        
+        String [][] matrizLogica = partida.getTablero().getMatrizLogica();
         //hay que especidicar que esta mal ????
         String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
         String jugada="";
@@ -160,7 +179,7 @@ public class Interfaz {
                 case "J":                   
                     Auxiliar.imprimirTitulo("JUGANDO...");
                     if (jugada.toUpperCase().charAt(2)=='I') {
-                        if(partida.getTablero().puedoInvertirFicha(jugada)){
+                        if(!partida.getTablero().puedoInvertirFicha(jugada)){
                             System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
                         }else {
                             System.out.println("Ficha invertida con éxito");
@@ -169,12 +188,14 @@ public class Interfaz {
                         partida.getTablero().agregarMovimiento(jugada);
                     }
                     break;
-                case "B"://pero puede ser minuscula tmb
-                    
+                case "B"://se muestran filas y columnas
+                    partida.getTablero().setMostrarFilasYColumnas(true);
+                    mostrarMatrizLogica(matrizLogica, partida);
                     System.out.println("");
                     break;
-                case "N":
-                    
+                case "N"://se ocultan filas y columans
+                    artida.getTablero().setMostrarFilasYColumnas(false);
+                    mostrarMatrizLogica(matrizLogica,partida);
                     System.out.println("");
                     break;
                 case "T":
@@ -190,8 +211,11 @@ public class Interfaz {
                 case "H":
                     System.out.println("Seleccionó ayuda");
                     //System.out.println(partida.getTablero().movimientoAyuda());
+                case "X":
+                    termino = true;
                 default:
-                    break;
+                    System.out.println("Las opciones valias son y el texto de marti");
+                    
             }
             return termino;
         }
