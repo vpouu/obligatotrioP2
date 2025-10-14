@@ -14,7 +14,7 @@ public class Interfaz {
         Auxiliar.imprimirTitulo("MEDIO TA TE TI");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
-            System.out.println(mostrarMenu());
+            System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n" + mostrarMenu());
             String [] letrasValidas={"a","b","c","d","e"};
             opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son:"+mostrarMenu());
 
@@ -191,12 +191,12 @@ public class Interfaz {
                     break;
                 case "B"://se muestran filas y columnas
                     partida.getTablero().setMostrarFilasYColumnas(true);
-                    mostrarMatrizLogica(matrizLogica, partida);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "N"://se ocultan filas y columans
-                    artida.getTablero().setMostrarFilasYColumnas(false);
-                    mostrarMatrizLogica(matrizLogica,partida);
+                    partida.getTablero().setMostrarFilasYColumnas(false);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "T":
@@ -229,8 +229,8 @@ public class Interfaz {
         this.sistema.agregarJugador(jugador);
     }
     public String mostrarMenu(){
-        String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n"
-                + "a)Registrar jugador \n"
+        String menu = 
+                "a)Registrar jugador \n"
                 + "b)Comienzo de partida común \n"
                 + "c)Continuación de partida \n"
                 + "d)Mostrar ranking de invictos \n"
