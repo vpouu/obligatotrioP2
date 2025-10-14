@@ -37,7 +37,7 @@ public class Tablero {
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
     //validar que jugador invierta solo las d ee´l
-    public String[][] agregarMovimiento(String movimiento){
+    public void agregarMovimiento(String movimiento){
         String movMayus = movimiento.toUpperCase();
         char fila = movMayus.charAt(0);
         char col = movMayus.charAt(1);
@@ -61,7 +61,7 @@ public class Tablero {
         }
         //ver su es apropiadocamviar turno aca
         cambiarTurno();
-        return matrizLogica;
+        
     }
     public boolean puedoInvertirFicha(String movimiento){
         boolean ret=false;

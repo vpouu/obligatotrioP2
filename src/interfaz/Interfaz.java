@@ -14,9 +14,9 @@ public class Interfaz {
         Auxiliar.imprimirTitulo("MEDIO TA TE TI");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
-            mostrarMenu();
+            System.out.println(mostrarMenu());
             String [] letrasValidas={"a","b","c","d","e"};
-            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas);
+            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son:"+mostrarMenu());
 
             switch (opcion) {
                 case "a":
@@ -69,15 +69,15 @@ public class Interfaz {
             String [][] matLogica=partida.getTablero().getMatrizLogica();
             mostrarTurno(partida);
             mostrarMatrizLogica(matLogica);
-            mostrarMenuJugando();
+            System.out.println(mostrarMenuJugando());
   
             termino=true;
-            if(leerEntrada){
+            if(leerEntrada(partida)){
                 termino = true;
             }
         }
     }
-    public void mostrarMenuJugando(){
+    public String mostrarMenuJugando(){
         String ret="Puede ingresar: \n"
                 + "-FilaColumnaSentido (ej.: A2C), para colocar su ficha (circulitos)"
                 + " \tab Fila: A, B o C"
@@ -89,6 +89,7 @@ public class Interfaz {
                 + "'B' si quiere ver los títulos en los bordes"
                 + "'N' si no quiere ver los títulos en los bordes"
                 + "'T', si termina en empate";
+        return ret;
     }
     public void mostrarMatrizLogica (String [][] matLogica){
         String separador= "+--+--+--+--+--+--+";
@@ -129,30 +130,44 @@ public class Interfaz {
         String [] cadenaFilas = {"A","B","c"};
         String [] cadenaColumnas = {"1","2","3"};
         String [] cadenaSentidos = {"C","D","I"};
-        String [] cadenasPosibles = new int[32];
-
+        String [] cadenasPosibles = new String[32];
+        int l=0;
         for(int i=0 ; i<cadenaFilas.length; i++){
             for (int j = 0; j < cadenaColumnas.length; j++) {
                 for(int k=0; k<cadenaSentidos.length; k++){
-                    cadenasPosibles = ""+cadenaFilas.charAt(i)+cadenaColumnas.charAt(j)+cadenaSentidos(k);
-
+                    cadenasPosibles[l]= cadenaFilas[i]+cadenaColumnas[j]+cadenaSentidos[k];
+                    l++;
                 }
                 
             }
         }
-        cadenasPosibles[]
+        return cadenasPosibles;
     
 }
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
-    public boolean leerEntrada(){
+    public boolean leerEntrada(Partida partida){
         boolean termino = false;
         generarArrayOpcionesValidas();
-        Auxiliar.ingresarLetra("Ingrese jugada",0,0);
-
-            switch (opcion) {
-                case :
-                   
-                    System.out.println("");
+        //hay que especidicar que esta mal ????
+        String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
+        String jugada="";
+        if(opcion.length()==3){
+            opcion="J";
+            jugada=opcion;
+            
+        }
+            switch (opcion.toUpperCase()) {
+                case "J":                   
+                    Auxiliar.imprimirTitulo("JUGANDO...");
+                    if (jugada.toUpperCase().charAt(2)=='I') {
+                        if(partida.getTablero().puedoInvertirFicha(jugada)){
+                            System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
+                        }else {
+                            System.out.println("Ficha invertida con éxito");
+                        }
+                    }else{
+                        partida.getTablero().agregarMovimiento(jugada);
+                    }
                     break;
                 case "B"://pero puede ser minuscula tmb
                     
@@ -163,10 +178,18 @@ public class Interfaz {
                     System.out.println("");
                     break;
                 case "T":
+                    System.out.println("Seleccionó empatar");
+                    String [] opci={"s","n"};
+                    String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar?",opci , "Debe ingresar S o N");
+                    if(quiso.equalsIgnoreCase("S")){
+                        termino=true;
+                    }
+                    //creo que no hay que poner else
                     
-                    System.out.println("");
-                    //check que funcione sout
                     break;
+                case "H":
+                    System.out.println("Seleccionó ayuda");
+                    //System.out.println(partida.getTablero().movimientoAyuda());
                 default:
                     break;
             }
@@ -180,7 +203,7 @@ public class Interfaz {
         Jugador jugador=new Jugador(nom,edad);
         this.sistema.agregarJugador(jugador);
     }
-    public void mostrarMenu(){
+    public String mostrarMenu(){
         String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n"
                 + "a)Registrar jugador \n"
                 + "b)Comienzo de partida común \n"
@@ -188,7 +211,7 @@ public class Interfaz {
                 + "d)Mostrar ranking de invictos \n"
                 + "e)Salir del programa";
         
-        System.out.println(menu);
+        return menu;
               
     }
     public String ingresarNombre (){

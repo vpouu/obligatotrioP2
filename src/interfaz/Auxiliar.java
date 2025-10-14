@@ -35,7 +35,7 @@ public class Auxiliar {
     }
     
 
-    public static String ingresarLetra(String texto, String [] opciones) {
+    public static String ingresarLetra(String texto, String [] opciones, String mensajeDeError) {
         Scanner in = new Scanner(System.in);
         boolean valido=false;
         System.out.println(texto);
@@ -46,7 +46,7 @@ public class Auxiliar {
             }
         }
         while (!valido){
-            System.out.println("la letra ingresada no es válida");
+            System.out.println(mensajeDeError);
             ret = in.nextLine();
             for(String opcion:opciones){
                 if(opcion.equalsIgnoreCase(ret)){
