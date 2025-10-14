@@ -6,12 +6,19 @@ package dominio;
 public class Tablero {
     private String [][] matrizLogica;
     private int turno;
+    private boolean mostrarFilasYColumnas = true;
     //el blanco es 1, el negro es 2
     public Tablero(){
         this.turno = 1;
         this.matrizLogica = new String[3][6];
         
         
+    }
+    public boolean getMostrarFilasYColumnas(){
+        return mostrarFilasYColumnas;
+    }
+    public void setMostrarFilasYColumnas(boolean mostrar){
+        this.mostrarFilasYColumnas = mostrar;
     }
 
     public String[][] getMatrizLogica() {
@@ -88,7 +95,9 @@ public class Tablero {
         }
       
     }
+   
     //public String
+    
     //si es I y no hay ninguna que hago
     /*● ○
     public boolean terminarPartida(){
