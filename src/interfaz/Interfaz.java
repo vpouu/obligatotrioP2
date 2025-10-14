@@ -147,7 +147,7 @@ public class Interfaz {
     public boolean leerEntrada(){
         boolean termino = false;
         generarArrayOpcionesValidas();
-        Auxiliar.ingresarLetra("Ingrese jugada",)
+        Auxiliar.ingresarLetra("Ingrese jugada",0,0);
 
             switch (opcion) {
                 case :
@@ -170,11 +170,9 @@ public class Interfaz {
                 default:
                     break;
             }
+            return termino;
         }
-        return termino;
-    }
-   
-    public void registrarJugador(){
+     public void registrarJugador(){
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
         String nom = ingresarNombre();
@@ -202,6 +200,10 @@ public class Interfaz {
         }
         return nombre;
     }
-            
+    }
 
-}
+            
+    
+
+   
+   
