@@ -92,24 +92,24 @@ public class Interfaz {
         return ret;
     }
     public void mostrarMatrizLogica (Partida partida){
-    String matLogica [][] = partida.getTablero().getMatrizLogica();
+        String matLogica [][] = partida.getTablero().getMatrizLogica();
         boolean mostrarFilasYColumnas = partida.getTablero().getMostrarFilasYColumnas();
         if(mostrarFilasYColumnas){
             String numeros ="  1  2  3  4  5  6";
             System.out.println(numeros);
         }
-        String separador= "+--+--+--+--+--+--+";
+        String separador= " +--+--+--+--+--+--+";
         String filas = "ABC";
         System.out.println(separador);
         for (int i = 0; i < matLogica.length; i++) {
             for(int k=1; k<=3;k++){
-                String cadena="|";
+                String cadena=" |";
                 if(k==2 && mostrarFilasYColumnas){
                     cadena = ""+filas.charAt(i) +"|";
                 }
                 for (int j = 0; j < matLogica[i].length; j++) {
                     
-                    cadena +=darCirculito(i,k,j,matLogica)+"|";
+                    cadena +=darCirculito(i,k,j,matLogica)+" |";
                 }
                 System.out.println(cadena);
             }
@@ -157,9 +157,10 @@ public class Interfaz {
             for (int j = 0; j < letras.length; j++) {
                 cadenasPosibles[i] = letras[j];
             }
-        return cadenasPosibles;
+        
              
 }
+        return cadenasPosibles;
     
 }
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
