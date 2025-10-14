@@ -88,6 +88,7 @@ public class Tablero {
         }
       
     }
+    
     //public String
     //si es I y no hay ninguna que hago
     /*● ○
@@ -96,12 +97,11 @@ public class Tablero {
     public int quienGano(){
     
     }
+    public int quienGano(){
+        return 0; 
+    }
     public String jugadaGanadora(){
     
-    }
-    public String tableroAMostrar(){
-    }
-    public void ocultarFilas(){
     }
 */
     
