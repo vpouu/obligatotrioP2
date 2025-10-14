@@ -42,7 +42,9 @@ public class Tablero {
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
     //validar que jugador invierta solo las d ee´l
-    public void agregarMovimiento(String movimiento){
+    //ARREGLAR QUE SI YA HAY UNA FICHA PUESTA QUE NO DEJE VOLVER A PONER!!!!!!!!!!!!!!!!!!!
+    public boolean agregarMovimiento(String movimiento){
+        boolean pudoAgregarlo=true;
         String movMayus = movimiento.toUpperCase();
         char fila = movMayus.charAt(0);
         int col = Character.getNumericValue(movMayus.charAt(1))-1;
@@ -51,32 +53,36 @@ public class Tablero {
         for(int i=0;i<arr.length;i++){
             if(arr[i]==fila){
                 if(dibujo.charAt(0)=='I'){
-                    if(matrizLogica[i][col].equals("C")){
+                    if(matrizLogica[i][col].equals("C"+turno)){
                         matrizLogica[i][col]="D"+turno;
                     }else{
                         matrizLogica[i][col]="C"+turno;
                     }
-                    
-                    
+                    cambiarTurno();
                 }else{
-                   
-                    matrizLogica[i][col]=dibujo;
+                   if(matrizLogica[i][col] != null){
+                       pudoAgregarlo=false;
+                   }
+                   else{
+                        matrizLogica[i][col]=dibujo;     
+                        cambiarTurno();
+                   }
                 }
                 
             }
         }
         //ver su es apropiadocamviar turno aca
-        cambiarTurno();
+        return pudoAgregarlo;
         
     }
     public boolean puedoInvertirFicha(String movimiento){
         boolean ret=false;
         char arr[] = {'A','B','C'};
-        char fila=movimiento.charAt(0);
+        char fila=movimiento.toUpperCase().charAt(0);
         for(int i=0;i<arr.length;i++){
             if(arr[i]==fila){
-                if(!matrizLogica[i][movimiento.charAt(1)-1].equals(null)){
-                    if(matrizLogica[i][movimiento.charAt(1)-1].charAt(1)==turno){
+                if(!matrizLogica[i][Character.getNumericValue(movimiento.charAt(1))-1].equals(null)){
+                    if(Character.getNumericValue(matrizLogica[i][Character.getNumericValue(movimiento.charAt(1))-1].charAt(1))==turno){
                         ret=true;
                         agregarMovimiento(movimiento);
                     }

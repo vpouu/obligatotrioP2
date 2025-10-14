@@ -50,7 +50,14 @@ public class Interfaz {
         if(imprimio){
             
             numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
-            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del jugador 2",1,sistema.getListaJugadores().size(),mensajeError);
+            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+            //esto va aca???????
+            while(numJugador2==numJugador1){
+                System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
+                Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
+                numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+
+            }
             Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
             Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
             Partida partida = new Partida(jugador1, jugador2);
@@ -136,9 +143,9 @@ public class Interfaz {
     }
     public String []generarArrayOpcionesValidas(){
         String [] cadenaFilas = {"A","B","c"};
-        String [] cadenaColumnas = {"1","2","3"};
+        String [] cadenaColumnas = {"1","2","3","4","5","6"};
         String [] cadenaSentidos = {"C","D","I"};
-        String [] cadenasPosibles = new String[32];
+        String [] cadenasPosibles = new String[59];
         int l=0;
         for(int i=0 ; i<cadenaFilas.length; i++){
             for (int j = 0; j < cadenaColumnas.length; j++) {
@@ -151,7 +158,7 @@ public class Interfaz {
         }
         String [] letras = {"B","N","T","H","X"};
         int j=0;
-        for(int i=27; i<32; i++){
+        for(int i=54; i<59; i++){
             cadenasPosibles[i] = letras[j];
             j++;
         }
@@ -182,7 +189,9 @@ public class Interfaz {
                         }
                     }else{
                         
-                        partida.getTablero().agregarMovimiento(jugada);
+                        if(!partida.getTablero().agregarMovimiento(jugada)){
+                            System.out.println("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
+                        }
                     }
                     break;
                 case "B"://se muestran filas y columnas
