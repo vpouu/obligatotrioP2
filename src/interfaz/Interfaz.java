@@ -14,7 +14,11 @@ public class Interfaz {
         Auxiliar.imprimirTitulo("MEDIO TA TE TI");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
+<<<<<<< Updated upstream
             System.out.println(mostrarMenu());
+=======
+            System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y VICTORIA POU (283117) \n" + mostrarMenu());
+>>>>>>> Stashed changes
             String [] letrasValidas={"a","b","c","d","e"};
             opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son:"+mostrarMenu());
 
@@ -71,9 +75,10 @@ public class Interfaz {
             mostrarMatrizLogica(partida);
             System.out.println(mostrarMenuJugando());
   
-            boolean siguePartida =leerEntrada(partida);
-            if(!siguePartida){
+            termino =leerEntrada(partida);
+            if(termino){
                 termino = true;
+                System.out.println("entro");
             }
         }
     }
@@ -153,16 +158,16 @@ public class Interfaz {
             }
         }
         String [] letras = {"B","N","T","H","X"};
+        int j=0;
         for(int i=27; i<32; i++){
-            for (int j = 0; j < letras.length; j++) {
-                cadenasPosibles[i] = letras[j];
+            cadenasPosibles[i] = letras[j];
+            j++;
             }
-        
+        return cadenasPosibles;
              
 }
-        return cadenasPosibles;
     
-}
+
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
     public boolean leerEntrada(Partida partida){
         boolean termino = false;
