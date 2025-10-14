@@ -1,5 +1,3 @@
-
-
 package dominio;
 
 
@@ -106,12 +104,11 @@ public class Tablero {
     public int quienGano(){
     
     }
+    public int quienGano(){
+        return 0; 
+    }
     public String jugadaGanadora(){
     
-    }
-    public String tableroAMostrar(){
-    }
-    public void ocultarFilas(){
     }
 */
     

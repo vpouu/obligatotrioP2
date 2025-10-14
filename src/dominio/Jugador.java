@@ -1,12 +1,9 @@
-/*
- Martina Gonzalez y Victoria Pou*/
 package dominio;
 
 
-/**
- *
- * @author victo
- */
+/*
+ Martina Gonzalez y Victoria Pou*/
+
 public class Jugador implements Comparable<Jugador>{
     private String nombre;
     private int edad;

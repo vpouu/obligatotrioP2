@@ -1,8 +1,7 @@
-/* Victoria Pou y Martina Gonzalez*/
-
 package interfaz;
-
 import java.util.*;
+
+/* Victoria Pou y Martina Gonzalez*/
 
 
 public class Auxiliar {
