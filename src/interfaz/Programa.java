@@ -1,11 +1,10 @@
-//renombrar packeges con minuscula
-//hacer cantPartidasGanas++ cuando un jugador gana una partida
 package interfaz;
 import dominio.Sistema;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-
+//renombrar packeges con minuscula
+//hacer cantPartidasGanas++ cuando un jugador gana una partida
 
 public class Programa {
     public static void main(String[] args) throws UnsupportedEncodingException {

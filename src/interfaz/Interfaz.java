@@ -1,4 +1,3 @@
-
 package interfaz;
 //tengo qwue explicar en serio como se juega???????
 import dominio.*;
@@ -60,7 +59,7 @@ public class Interfaz {
         //elegir jugador a participar, new partida, 
     }
     public void mostrarTurno(Partida partida){
-        String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " ( " + partida.getJugadorActual();
+        String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual() + ")";
         System.out.println(ret);
     }
     public void jugando(Partida partida){
@@ -71,10 +70,8 @@ public class Interfaz {
             mostrarMatrizLogica(partida);
             System.out.println(mostrarMenuJugando());
   
-            boolean siguePartida =leerEntrada(partida);
-            if(!siguePartida){
-                termino = true;
-            }
+            termino =leerEntrada(partida);
+            
         }
     }
     public String mostrarMenuJugando(){
@@ -109,7 +106,7 @@ public class Interfaz {
                 }
                 for (int j = 0; j < matLogica[i].length; j++) {
                     
-                    cadena +=darCirculito(i,k,j,matLogica)+" |";
+                    cadena +=darCirculito(i,k,j,matLogica)+"|";
                 }
                 System.out.println(cadena);
             }
@@ -153,13 +150,11 @@ public class Interfaz {
             }
         }
         String [] letras = {"B","N","T","H","X"};
+        int j=0;
         for(int i=27; i<32; i++){
-            for (int j = 0; j < letras.length; j++) {
-                cadenasPosibles[i] = letras[j];
-            }
-        
-             
-}
+            cadenasPosibles[i] = letras[j];
+            j++;
+        }
         return cadenasPosibles;
     
 }
@@ -203,6 +198,8 @@ public class Interfaz {
                 case "T":
                     System.out.println("Seleccionó empatar");
                     String [] opci={"s","n"};
+                    partida.getTablero().cambiarTurno();
+                    mostrarTurno(partida);
                     String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar?",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
                         termino=true;
