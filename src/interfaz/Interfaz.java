@@ -172,8 +172,8 @@ public class Interfaz {
         String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
         String jugada="";
         if(opcion.length()==3){
-            opcion="J";
             jugada=opcion;
+            opcion="J";
             
         }
             switch (opcion.toUpperCase()) {
@@ -186,6 +186,7 @@ public class Interfaz {
                             System.out.println("Ficha invertida con éxito");
                         }
                     }else{
+                        
                         partida.getTablero().agregarMovimiento(jugada);
                     }
                     break;
