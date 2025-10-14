@@ -172,8 +172,8 @@ public class Interfaz {
         String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
         String jugada="";
         if(opcion.length()==3){
-            opcion="J";
             jugada=opcion;
+            opcion="J";
             
         }
             switch (opcion.toUpperCase()) {
@@ -186,17 +186,18 @@ public class Interfaz {
                             System.out.println("Ficha invertida con éxito");
                         }
                     }else{
+                        
                         partida.getTablero().agregarMovimiento(jugada);
                     }
                     break;
                 case "B"://se muestran filas y columnas
                     partida.getTablero().setMostrarFilasYColumnas(true);
-                    mostrarMatrizLogica(matrizLogica, partida);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "N"://se ocultan filas y columans
-                    artida.getTablero().setMostrarFilasYColumnas(false);
-                    mostrarMatrizLogica(matrizLogica,partida);
+                    partida.getTablero().setMostrarFilasYColumnas(false);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "T":

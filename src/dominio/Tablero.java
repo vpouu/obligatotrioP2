@@ -47,7 +47,7 @@ public class Tablero {
     public void agregarMovimiento(String movimiento){
         String movMayus = movimiento.toUpperCase();
         char fila = movMayus.charAt(0);
-        char col = movMayus.charAt(1);
+        int col = Character.getNumericValue(movMayus.charAt(1))-1;
         String dibujo = "" + movMayus.charAt(2)+turno;
         char arr[] = {'A','B','C'};
         for(int i=0;i<arr.length;i++){
@@ -61,6 +61,7 @@ public class Tablero {
                     
                     
                 }else{
+                   
                     matrizLogica[i][col]=dibujo;
                 }
                 
