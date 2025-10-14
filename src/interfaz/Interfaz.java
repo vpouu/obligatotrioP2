@@ -14,7 +14,7 @@ public class Interfaz {
         Auxiliar.imprimirTitulo("MEDIO TA TE TI");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
-            System.out.println(mostrarMenu());
+            System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n" + mostrarMenu());
             String [] letrasValidas={"a","b","c","d","e"};
             opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son:"+mostrarMenu());
 
@@ -156,10 +156,9 @@ public class Interfaz {
         for(int i=27; i<32; i++){
             for (int j = 0; j < letras.length; j++) {
                 cadenasPosibles[i] = letras[j];
-            }
+            }             
+        }
         return cadenasPosibles;
-             
-}
     
 }
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
@@ -190,12 +189,12 @@ public class Interfaz {
                     break;
                 case "B"://se muestran filas y columnas
                     partida.getTablero().setMostrarFilasYColumnas(true);
-                    mostrarMatrizLogica(matrizLogica, partida);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "N"://se ocultan filas y columans
-                    artida.getTablero().setMostrarFilasYColumnas(false);
-                    mostrarMatrizLogica(matrizLogica,partida);
+                    partida.getTablero().setMostrarFilasYColumnas(false);
+                    mostrarMatrizLogica(partida);
                     System.out.println("");
                     break;
                 case "T":
@@ -228,8 +227,8 @@ public class Interfaz {
         this.sistema.agregarJugador(jugador);
     }
     public String mostrarMenu(){
-        String menu = "Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y (VICTORIA POU) \n"
-                + "a)Registrar jugador \n"
+        String menu = 
+                "a)Registrar jugador \n"
                 + "b)Comienzo de partida común \n"
                 + "c)Continuación de partida \n"
                 + "d)Mostrar ranking de invictos \n"
