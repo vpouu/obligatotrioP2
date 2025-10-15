@@ -54,7 +54,14 @@ public class Interfaz {
         if(imprimio){
             
             numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
-            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del jugador 2",1,sistema.getListaJugadores().size(),mensajeError);
+            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+            //esto va aca???????
+            while(numJugador2==numJugador1){
+                System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
+                Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
+                numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+
+            }
             Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
             Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
             Partida partida = new Partida(jugador1, jugador2);
@@ -213,12 +220,16 @@ public class Interfaz {
                         }
                     }else{
                         
-                        partida.getTablero().agregarMovimiento(jugada);
-                        Jugador jugadorGanador = partida.ganador();
+                            
+                        if(!partida.getTablero().agregarMovimiento(jugada)){
+                            System.out.println("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
+                        }else{
+                            Jugador jugadorGanador = partida.ganador();
                             if(ganoAlguien(jugadorGanador)){
                                 termino = true;
                             }
-                            
+
+                        }
                     }
                     
                     break;
