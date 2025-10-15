@@ -14,7 +14,7 @@ public class Interfaz {
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
 
-            System.out.println(mostrarMenu());
+            
 
             System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y VICTORIA POU (283117) \n" + mostrarMenu());
 
@@ -58,6 +58,7 @@ public class Interfaz {
             Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
             Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
             Partida partida = new Partida(jugador1, jugador2);
+            partida.sumarPartidasJugadas();
             jugando(partida);
         }
         //elegir jugador a participar, new partida, 
@@ -68,10 +69,11 @@ public class Interfaz {
     }
     public void jugando(Partida partida){
         boolean termino=false;
+        
         while(!termino){
             mostrarTurno(partida);
             
-            mostrarMatrizLogica(partida);
+            System.out.print(mostrarMatrizLogica(partida));
             System.out.println(mostrarMenuJugando());
   
             termino =leerEntrada(partida);
@@ -86,27 +88,28 @@ public class Interfaz {
     public String mostrarMenuJugando(){
         String ret="Puede ingresar: \n"
                 + "-FilaColumnaSentido (ej.: A2C), para colocar su ficha (circulitos)"
-                + " \tab Fila: A, B o C"
-                + " \tab Columna: 1 a 6"
-                + " \tab Sentido C o D"
-                + "-FilColumnaI (ej.:A2I) si quiere invertir una ficha propia, de C pasa a D o al revés (se indica la filas y columnas de la forma arriba)"
-                + "'X', si usted quiere terminar la partida y perder"
-                + "'H' si quiere ayuda"
-                + "'B' si quiere ver los títulos en los bordes"
-                + "'N' si no quiere ver los títulos en los bordes"
-                + "'T', si termina en empate";
+                + " \n Fila: A, B o C"
+                + " \n Columna: 1 a 6"
+                + " \n Sentido C o D"
+                + "\n-FilColumnaI (ej.:A2I) si quiere invertir una ficha propia, de C pasa a D o al revés (se indica la filas y columnas de la forma arriba)"
+                + "\n'X', si usted quiere terminar la partida y perder"
+                + "\n'H' si quiere ayuda"
+                + "\n'B' si quiere ver los títulos en los bordes"
+                + "\n'N' si no quiere ver los títulos en los bordes"
+                + "\n'T', si termina en empate";
         return ret;
     }
-    public void mostrarMatrizLogica (Partida partida){
+    public String mostrarMatrizLogica (Partida partida){
         String matLogica [][] = partida.getTablero().getMatrizLogica();
+        String ret ="";
         boolean mostrarFilasYColumnas = partida.getTablero().getMostrarFilasYColumnas();
         if(mostrarFilasYColumnas){
             String numeros ="  1  2  3  4  5  6";
-            System.out.println(numeros);
+            ret += numeros + "\n";
         }
         String separador= " +--+--+--+--+--+--+";
         String filas = "ABC";
-        System.out.println(separador);
+        ret += separador +"\n";
         for (int i = 0; i < matLogica.length; i++) {
             for(int k=1; k<=3;k++){
                 String cadena=" |";
@@ -117,10 +120,11 @@ public class Interfaz {
                     
                     cadena +=darCirculito(i,k,j,matLogica)+"|";
                 }
-                System.out.println(cadena);
+                ret += cadena + "\n";
             }
-            System.out.println(separador);                  
+            ret += separador + "\n";                  
         }
+        return ret;
     }
     //darCirculito va en intefaz
     public String darCirculito (int i, int k, int j, String [][] matLogica){
@@ -145,9 +149,9 @@ public class Interfaz {
     }
     public String []generarArrayOpcionesValidas(){
         String [] cadenaFilas = {"A","B","c"};
-        String [] cadenaColumnas = {"1","2","3"};
+        String [] cadenaColumnas = {"1","2","3","4","5","6"};
         String [] cadenaSentidos = {"C","D","I"};
-        String [] cadenasPosibles = new String[32];
+        String [] cadenasPosibles = new String[59];
         int l=0;
         for(int i=0 ; i<cadenaFilas.length; i++){
             for (int j = 0; j < cadenaColumnas.length; j++) {
@@ -160,7 +164,7 @@ public class Interfaz {
         }
         String [] letras = {"B","N","T","H","X"};
         int j=0;
-        for(int i=27; i<32; i++){
+        for(int i=54; i<59; i++){
             cadenasPosibles[i] = letras[j];
             j++;
 
@@ -169,7 +173,16 @@ public class Interfaz {
              
 }
 
-    
+  public boolean ganoAlguien(Jugador jugador){
+      boolean gano = false;
+      if(jugador == null){
+        gano = true;
+        System.out.println("Gano el jugador "+ jugador.getNombre());
+        
+        
+     }
+      return gano;
+  } 
 
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
     public boolean leerEntrada(Partida partida){
@@ -186,17 +199,28 @@ public class Interfaz {
         }
             switch (opcion.toUpperCase()) {
                 case "J":                   
+                    
                     Auxiliar.imprimirTitulo("JUGANDO...");
                     if (jugada.toUpperCase().charAt(2)=='I') {
                         if(!partida.getTablero().puedoInvertirFicha(jugada)){
                             System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
                         }else {
                             System.out.println("Ficha invertida con éxito");
+                            Jugador jugadorGanador = partida.ganador();
+                            if(ganoAlguien(jugadorGanador)){
+                                termino = true;
+                            }
                         }
                     }else{
                         
                         partida.getTablero().agregarMovimiento(jugada);
+                        Jugador jugadorGanador = partida.ganador();
+                            if(ganoAlguien(jugadorGanador)){
+                                termino = true;
+                            }
+                            
                     }
+                    
                     break;
                 case "B"://se muestran filas y columnas
                     partida.getTablero().setMostrarFilasYColumnas(true);
@@ -225,6 +249,7 @@ public class Interfaz {
                     //System.out.println(partida.getTablero().movimientoAyuda());
                 case "X":
                     termino = true;
+                    
                 default:
                     System.out.println("Las opciones valias son y el texto de marti");
                     

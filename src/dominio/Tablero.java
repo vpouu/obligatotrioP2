@@ -38,6 +38,17 @@ public class Tablero {
         //TO DO: definir quien gano
         return 0;
     }
+    public int logicaGanadora(){
+        if(hayGanador(this.turno)){
+            
+        }
+        
+        hayGanador()
+               
+        
+    }
+    public boolean hayGanador(int elTurno){
+    }
     
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
@@ -72,7 +83,7 @@ public class Tablero {
     public boolean puedoInvertirFicha(String movimiento){
         boolean ret=false;
         char arr[] = {'A','B','C'};
-        char fila=movimiento.charAt(0);
+        char fila=movimiento.toUpperCase().charAt(0);
         for(int i=0;i<arr.length;i++){
             if(arr[i]==fila){
                 if(!matrizLogica[i][movimiento.charAt(1)-1].equals(null)){

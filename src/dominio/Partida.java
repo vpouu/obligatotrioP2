@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashSet;
+
 public class Partida {
     private Jugador jugador1;
     private Jugador jugador2;
@@ -57,13 +59,24 @@ public class Partida {
     //xq por ej si es x ya termina el juego
     
     public Jugador ganador (){
-        Jugador ret;
-        if(this.tablero.quienGano()==1){
+        Jugador ret=null;
+        if(this.tablero.logicaGanadora()==1){
             ret=this.jugador1;
         }else{
-            ret=this.jugador2;
+            if(this.tablero.logicaGanadora()==2){
+                ret=this.jugador2;
+            }
+        }
+        if(ret!=null){
+            
         }
         return ret;
+    }
+    public void sumarPartidasJugadas(){
+        this.jugador1.setCantJugadas(this.jugador1.getCantJugadas()+1);
+        this.jugador2.setCantJugadas(this.jugador2.getCantJugadas()+1);
+        
+        
     }
     public Partida (Jugador j1, Jugador j2){
         this.jugador1=j1;
