@@ -39,15 +39,104 @@ public class Tablero {
         return 0;
     }
     public int logicaGanadora(){
+        int ret=0;
         if(hayGanador(this.turno)){
-            
+            ret=this.turno;
+        }else{
+            int otroTurno=1;
+            if(otroTurno==this.turno){
+                otroTurno=2;
+            }
+            if(hayGanador(otroTurno)){
+                ret=2;
+            }
+           
         }
+        return ret;
         
-        hayGanador()
                
         
     }
     public boolean hayGanador(int elTurno){
+        char primeraLetra = 'D';
+        char segundaLetra='C';
+        if(elTurno==1){
+            primeraLetra = 'C';
+            segundaLetra = 'D';
+        }
+        boolean encontro=false;
+        for (int i = 0; i < matrizLogica.length && !encontro; i++) {
+            boolean filaGanadora=true;
+            for (int j = 0; j < matrizLogica[i].length-1 && filaGanadora; j+=2) {
+                if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                    filaGanadora=false;
+                }
+            }
+            if(filaGanadora){
+                encontro=true;
+            }
+        }
+        for (int j = 0; j < matrizLogica[0].length-1 && !encontro; j+=2) {
+            boolean columnaGanadora=true;
+            for (int i = 0; i < matrizLogica[i].length-1 && columnaGanadora; i++) {
+                if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                    columnaGanadora=false;
+                }
+            }
+            if(columnaGanadora){
+                encontro=true;
+            }
+        }
+        int i=0;
+        int j=0;
+        boolean diagonalGanadora=true;
+        if(!encontro){
+            
+            for (int k = 0; k < 3; k++) {
+                j=k;
+                i=0;
+                while(posValida(i,j)){
+                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                        diagonalGanadora=false;
+                    }
+                    i++;
+                    j++;
+                }
+                if(diagonalGanadora){
+                    encontro=true;
+                }
+            }
+            
+        }
+        if(!encontro){
+                 
+            diagonalGanadora=true;
+            for (int k = 2; k < 5; k++) {
+                j=k;
+                i=2;
+                //posvalida esta bie????
+                while(posValida(i,j)){
+                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                        diagonalGanadora=false;
+                    }
+                    i--;
+                    j++;
+                }
+                if(diagonalGanadora){
+                    encontro=true;
+                }
+            }
+            
+        }
+        
+        
+            
+        
+        return encontro;
+    }
+    public boolean posValida(int i, int j){
+        return i<matrizLogica.length && i>0 && j<matrizLogica[0].length && 0<j;
+                
     }
     
     //public void analizarEntrada(){}
