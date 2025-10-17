@@ -257,12 +257,19 @@ public class Interfaz {
                     break;
                 case "H":
                     System.out.println("Seleccionó ayuda");
-                    //System.out.println(partida.getTablero().movimientoAyuda());
+                    if(partida.getTablero().movimientoAyuda()==null){
+                        System.out.println("No hay jugada posible para ganar");
+                    }else{
+                        System.out.println("La jugada ganadora es: "+ partida.getTablero().movimientoAyuda());
+                    }
+                    break;
                 case "X":
                     termino = true;
+                    break;
                     
                 default:
                     System.out.println("Las opciones valias son y el texto de marti");
+                    break;
                     
             }
             return termino;

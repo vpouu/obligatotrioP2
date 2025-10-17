@@ -160,6 +160,7 @@ public class Tablero {
                 
     }
     
+    
     //public void analizarEntrada(){}
     //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
     //validar que jugador invierta solo las d ee´l
@@ -199,6 +200,14 @@ public class Tablero {
         return pudoAgregarlo;
         
     }
+    public char letraOpuesta(char letra){
+        char ret='C';
+        if(letra=='C'||letra == 'c'){
+            ret='D';
+        }
+        return ret;
+    }
+  
     public boolean puedoInvertirFicha(String movimiento){
         boolean ret=false;
         char arr[] = {'A','B','C'};
@@ -223,6 +232,54 @@ public class Tablero {
             this.turno=1;
         }
       
+    }
+    public char transformarNumALetra (int num){
+        char letr []= {'A', 'B','C'};
+        return letr[num];
+    }
+    public String movimientoAyuda(){
+        String mov=null;
+        if(cantMov>=6){
+            for (int i = 0; i < matrizLogica.length && mov==null; i++) {
+                for (int j = 0; j < matrizLogica[0].length && mov==null; j++) {
+                    if(matrizLogica[i][j]!= null && Character.getNumericValue(matrizLogica[i][j].charAt(1))==this.turno){
+                        String aux= matrizLogica[i][j];
+                        matrizLogica[i][j]=""+letraOpuesta(matrizLogica[i][j].charAt(0))+turno;
+                        if(hayGanador(this.turno)){
+                            mov=""+(transformarNumALetra(i))+""+(j+1)+"I";
+                            System.out.println(i);
+                            System.out.println(j);
+                            System.out.println(mov);
+                      
+                            System.out.println(transformarNumALetra(i));
+                        }
+                        matrizLogica[i][j]=aux;
+                        
+                    }else{
+                        char[]COD={'C','D'};
+                        for(int k=0; k<2 && mov==null; k++){
+                            matrizLogica[i][j]=""+COD[k]+turno;
+                            if(hayGanador(this.turno)){
+                                mov=""+(transformarNumALetra(i))+""+(j+1)+COD[k];
+                                
+                            }
+                            if(mov!=null){
+                                System.out.println(i);
+                                System.out.println(j);
+                                System.out.println(mov);
+                                System.out.println(k);
+                                System.out.println(transformarNumALetra(i));
+                            }
+                            matrizLogica[i][j]=null;
+                        }
+                    }
+                    
+                    
+                }
+                
+            }
+        }           
+        return mov;
     }
    
     //public String
