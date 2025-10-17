@@ -74,7 +74,7 @@ public class Partida {
     }
     public void partidaComenzada(String movimientos){
         for(int i=0; i<movimientos.length(); i=i+3){
-        
+           
         }
         
     }

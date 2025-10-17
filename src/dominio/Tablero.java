@@ -169,22 +169,25 @@ public class Tablero {
         boolean [][] matGanadores = new boolean[3][6];
         if(!esDiagonal){
             if(j==-1){ 
-                for(int k=0; k<matGanadores[0].length; k++){
+                for(int k=0; k<matGanadores[0].length-1; k++){
                    matGanadores[i][k]=true;
+                   matGanadores[i][k+1]=true;
                }
             }else{
                 for(int k=0;k<matGanadores.length;k++){
                     matGanadores[k][j]=true;
+                    matGanadores[k][j+1]=true;
                 }
             }
             
-        }else{
+        }
+        /*else{
             
             if(i==2){
                 
                 for(int k=2; k>=0;k++){
                     matGanadores[k][j]=true;
-                    j--;                    
+                    j--; //pense q era --                    
                 }
             }else{
                 for(int k=0; k<3; k++){
@@ -194,6 +197,7 @@ public class Tablero {
             }
         
         }
+        */
         return matGanadores;
         
         

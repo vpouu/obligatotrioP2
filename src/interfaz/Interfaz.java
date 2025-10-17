@@ -142,7 +142,7 @@ public class Interfaz {
                     if(!(partida.getTablero().hayGanador(partida.getTablero().getTurno()))){
                         cadena +=darCirculito(i,k,j,matLogica,"o","●")+"|";
                     }else{
-                        cadena += darCirculitoGanador(i,k,j,partida.getTablero().getMatrizGanadores(),partida.getTablero().getMatrizLogica());
+                        cadena += darCirculitoGanador(i,k,j,partida.getTablero().getMatrizGanadores(),partida.getTablero().getMatrizLogica(),partida.getTablero().getTurno())+"|";
                     }
                     
                 }
@@ -173,10 +173,16 @@ public class Interfaz {
         return ret;
         
     }
-    public String darCirculitoGanador(int i, int k, int j, boolean [][] matGanadores, String [][]matLogica){
+    public String darCirculitoGanador(int i, int k, int j, boolean [][] matGanadores, String [][]matLogica, int turno){
         String ret ="";
+        System.out.println(matGanadores[i][j]);
        if(matGanadores[i][j]){
-           ret += darCirculito(i,j,k,matLogica,"O","X");
+           if(turno==1){
+               ret += darCirculito(i,k,j,matLogica,"O","O");
+           }else{
+               ret += darCirculito(i,k,j,matLogica,"X","X");
+           }          
+           
        }else{
            ret = darCirculito(i,k,j,matLogica,"o","●");
        }
@@ -257,10 +263,22 @@ public class Interfaz {
                             Jugador jugadorGanador = partida.ganador();
                             if(ganoAlguien(jugadorGanador)){
                                 termino = true;
-                                System.out.println(mostrarMatrizLogica(partida));
+                                System.out.print(mostrarMatrizLogica(partida));
+                            
+                            //imprimir mat ganadores para probar
+                            boolean [][] mat = partida.getTablero().getMatrizGanadores();
+                            for (int i = 0; i < mat.length; i++) {
+                                for (int j = 0; j < mat[0].length; j++) {
+                                    System.out.print(mat[i][j] + "  ");
+
+                                }
+                                System.out.println("");
+
+                            }
                             }
 
                         }
+                        
                     }
                     
                     break;
