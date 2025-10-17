@@ -67,9 +67,9 @@ public class Partida {
                 ret=this.jugador2;
             }
         }
-        if(ret!=null){
+        /*if(ret!=null){
             
-        }
+        }*/
         return ret;
     }
     public void sumarPartidasJugadas(){
