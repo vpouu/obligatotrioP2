@@ -5,10 +5,12 @@ public class Tablero {
     private String [][] matrizLogica;
     private int turno;
     private boolean mostrarFilasYColumnas = true;
+    private int cantMov;
     //el blanco es 1, el negro es 2
     public Tablero(){
         this.turno = 1;
         this.matrizLogica = new String[3][6];
+        this.cantMov=0;
         
         
     }
@@ -40,21 +42,21 @@ public class Tablero {
     }
     public int logicaGanadora(){
         int ret=0;
-        if(hayGanador(this.turno)){
-            ret=this.turno;
-        }else{
-            int otroTurno=1;
-            if(otroTurno==this.turno){
-                otroTurno=2;
-            }
-            if(hayGanador(otroTurno)){
-                ret=2;
-            }
+        if(this.cantMov>=6){
+            if(hayGanador(this.turno)){
+                ret=this.turno;
+            }else{
+                int otroTurno=1;
+                if(otroTurno==this.turno){
+                    otroTurno=2;
+                }
+                if(hayGanador(otroTurno)){
+                    ret=2;
+                }
            
+            }
         }
-        return ret;
-        
-               
+        return ret;          
         
     }
     public boolean hayGanador(int elTurno){
@@ -68,7 +70,11 @@ public class Tablero {
         for (int i = 0; i < matrizLogica.length && !encontro; i++) {
             boolean filaGanadora=true;
             for (int j = 0; j < matrizLogica[i].length-1 && filaGanadora; j+=2) {
-                if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                if(matrizLogica[i][j] != null && matrizLogica[i][j+1] != null){
+                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                        filaGanadora=false;
+                    }
+                }else{
                     filaGanadora=false;
                 }
             }
@@ -78,26 +84,36 @@ public class Tablero {
         }
         for (int j = 0; j < matrizLogica[0].length-1 && !encontro; j+=2) {
             boolean columnaGanadora=true;
-            for (int i = 0; i < matrizLogica[i].length-1 && columnaGanadora; i++) {
-                if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
-                    columnaGanadora=false;
+            for (int i = 0; i < matrizLogica.length && columnaGanadora; i++) {
+                if(matrizLogica[i][j] != null && matrizLogica[i][j +1] != null){
+                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                        columnaGanadora=false;
+                    }
+                }else{
+                    columnaGanadora = false;
                 }
             }
             if(columnaGanadora){
                 encontro=true;
             }
         }
+        
         int i=0;
         int j=0;
-        boolean diagonalGanadora=true;
+        
         if(!encontro){
             
             for (int k = 0; k < 3; k++) {
+                boolean diagonalGanadora=true;
                 j=k;
                 i=0;
-                while(posValida(i,j)){
-                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
-                        diagonalGanadora=false;
+                while(posValida(i,j) && posValida(i,j+1)){
+                    if(matrizLogica[i][j]!=null && matrizLogica[i][j+1] != null){
+                        if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                            diagonalGanadora=false;
+                        }
+                    }else{
+                        diagonalGanadora = false;
                     }
                     i++;
                     j++;
@@ -110,14 +126,19 @@ public class Tablero {
         }
         if(!encontro){
                  
-            diagonalGanadora=true;
+            
             for (int k = 2; k < 5; k++) {
+                boolean diagonalGanadora=true;
                 j=k;
                 i=2;
                 //posvalida esta bie????
-                while(posValida(i,j)){
-                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
-                        diagonalGanadora=false;
+                while(posValida(i,j+1) && posValida(i,j)){
+                    if(matrizLogica[i][j] != null && matrizLogica[i][j+1] != null){
+                        if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                            diagonalGanadora=false;
+                        }
+                    }else{
+                        diagonalGanadora = false;
                     }
                     i--;
                     j++;
@@ -135,7 +156,7 @@ public class Tablero {
         return encontro;
     }
     public boolean posValida(int i, int j){
-        return i<matrizLogica.length && i>0 && j<matrizLogica[0].length && 0<j;
+        return i<matrizLogica.length && i>=0 && j<matrizLogica[0].length && j>=0;
                 
     }
     
@@ -170,6 +191,9 @@ public class Tablero {
                 }
                 
             }
+        }
+        if(pudoAgregarlo){
+            this.cantMov++;
         }
         //ver su es apropiadocamviar turno aca
         return pudoAgregarlo;

@@ -182,7 +182,7 @@ public class Interfaz {
 
   public boolean ganoAlguien(Jugador jugador){
       boolean gano = false;
-      if(jugador == null){
+      if(jugador != null){
         gano = true;
         System.out.println("Gano el jugador "+ jugador.getNombre());
         
