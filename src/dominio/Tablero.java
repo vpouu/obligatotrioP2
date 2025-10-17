@@ -256,22 +256,26 @@ public class Tablero {
                         matrizLogica[i][j]=aux;
                         
                     }else{
-                        char[]COD={'C','D'};
-                        for(int k=0; k<2 && mov==null; k++){
-                            matrizLogica[i][j]=""+COD[k]+turno;
-                            if(hayGanador(this.turno)){
-                                mov=""+(transformarNumALetra(i))+""+(j+1)+COD[k];
+                        if(matrizLogica[i][j]==null){
+                            char[]COD={'C','D'};
+                            for(int k=0; k<2 && mov==null; k++){
+                                matrizLogica[i][j]=""+COD[k]+turno;
+                                if(hayGanador(this.turno)){
+                                    mov=""+(transformarNumALetra(i))+""+(j+1)+COD[k];
                                 
+                                }
+                                if(mov!=null){
+                                    System.out.println(i);
+                                    System.out.println(j);
+                                    System.out.println(mov);
+                                    System.out.println(k);
+                                    System.out.println(transformarNumALetra(i));
+                                }
+                                matrizLogica[i][j]=null;
                             }
-                            if(mov!=null){
-                                System.out.println(i);
-                                System.out.println(j);
-                                System.out.println(mov);
-                                System.out.println(k);
-                                System.out.println(transformarNumALetra(i));
-                            }
-                            matrizLogica[i][j]=null;
+                            
                         }
+                        
                     }
                     
                     
