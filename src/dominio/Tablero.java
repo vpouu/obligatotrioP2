@@ -6,6 +6,7 @@ public class Tablero {
     private int turno;
     private boolean mostrarFilasYColumnas = true;
     private int cantMov;
+    private boolean [][] matrizGanadores;
     //el blanco es 1, el negro es 2
     public Tablero(){
         this.turno = 1;
@@ -36,9 +37,12 @@ public class Tablero {
     public void setTurno(int turno) {
         this.turno = turno;
     }
-    public int quienGano(){
-        //TO DO: definir quien gano
-        return 0;
+    
+    public boolean [][] getMatrizGanadores(){
+        return matrizGanadores;
+    }
+    public void setMatrizGanadores(boolean [][] laMat){
+        this.matrizGanadores = laMat;        
     }
     public int logicaGanadora(){
         int ret=0;
@@ -79,7 +83,9 @@ public class Tablero {
                 }
             }
             if(filaGanadora){
+                setMatrizGanadores(crearMatrizGanadores(i,-1,false)); //se puede hacer un set aca?
                 encontro=true;
+                
             }
         }
         for (int j = 0; j < matrizLogica[0].length-1 && !encontro; j+=2) {
@@ -94,6 +100,7 @@ public class Tablero {
                 }
             }
             if(columnaGanadora){
+                setMatrizGanadores(crearMatrizGanadores(-1,j,false));
                 encontro=true;
             }
         }
@@ -120,6 +127,7 @@ public class Tablero {
                 }
                 if(diagonalGanadora){
                     encontro=true;
+                    setMatrizGanadores(crearMatrizGanadores(i-1,j-1,true));
                 }
             }
             
@@ -145,15 +153,50 @@ public class Tablero {
                 }
                 if(diagonalGanadora){
                     encontro=true;
+                    setMatrizGanadores(crearMatrizGanadores(i-1,j-1,true));
                 }
             }
             
         }
-        
-        
-            
+              
         
         return encontro;
+    }
+    
+    //si gano una fila paso j=-1 por parametro, si gano una columna paso i=-1 por parametro, en ambos casos esDiagonal = false
+    //si gano una diagonal, esDiagonal= true, i=fila donde arranca, j=col donde comienza, asi se de que diagonal se trata
+    public boolean [][] crearMatrizGanadores(int i, int j, boolean esDiagonal){
+        boolean [][] matGanadores = new boolean[3][6];
+        if(!esDiagonal){
+            if(j==-1){ 
+                for(int k=0; k<matGanadores[0].length; k++){
+                   matGanadores[i][k]=true;
+               }
+            }else{
+                for(int k=0;k<matGanadores.length;k++){
+                    matGanadores[k][j]=true;
+                }
+            }
+            
+        }else{
+            
+            if(i==2){
+                
+                for(int k=2; k>=0;k++){
+                    matGanadores[k][j]=true;
+                    j--;                    
+                }
+            }else{
+                for(int k=0; k<3; k++){
+                    matGanadores[k][j]=true;
+                    j--;
+                }
+            }
+        
+        }
+        return matGanadores;
+        
+        
     }
     public boolean posValida(int i, int j){
         return i<matrizLogica.length && i>=0 && j<matrizLogica[0].length && j>=0;
@@ -247,10 +290,7 @@ public class Tablero {
                         matrizLogica[i][j]=""+letraOpuesta(matrizLogica[i][j].charAt(0))+turno;
                         if(hayGanador(this.turno)){
                             mov=""+(transformarNumALetra(i))+""+(j+1)+"I";
-                            System.out.println(i);
-                            System.out.println(j);
-                            System.out.println(mov);
-                      
+                                                  
                             System.out.println(transformarNumALetra(i));
                         }
                         matrizLogica[i][j]=aux;
@@ -264,13 +304,7 @@ public class Tablero {
                                     mov=""+(transformarNumALetra(i))+""+(j+1)+COD[k];
                                 
                                 }
-                                if(mov!=null){
-                                    System.out.println(i);
-                                    System.out.println(j);
-                                    System.out.println(mov);
-                                    System.out.println(k);
-                                    System.out.println(transformarNumALetra(i));
-                                }
+                                
                                 matrizLogica[i][j]=null;
                             }
                             

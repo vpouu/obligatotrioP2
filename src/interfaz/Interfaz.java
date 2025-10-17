@@ -2,7 +2,7 @@ package interfaz;
 //tengo qwue explicar en serio como se juega???????
 import dominio.*;
 import java.util.*;
-
+import java.util.regex.Pattern;
 
 public class Interfaz {
     private final Sistema sistema;
@@ -170,6 +170,9 @@ public class Interfaz {
         return ret;
         
     }
+    //public String darCirculitoGanadores(Partida partida){
+        
+    //}
     public String []generarArrayOpcionesValidas(){
         String [] cadenaFilas = {"A","B","c"};
         String [] cadenaColumnas = {"1","2","3","4","5","6"};
