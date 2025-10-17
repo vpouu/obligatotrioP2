@@ -103,7 +103,6 @@ public class Interfaz {
 
             if(termino){
                 termino = true;
-                System.out.println("entro");
             }
 
         }
@@ -140,8 +139,12 @@ public class Interfaz {
                     cadena = ""+filas.charAt(i) +"|";
                 }
                 for (int j = 0; j < matLogica[i].length; j++) {
+                    if(!(partida.getTablero().hayGanador(partida.getTablero().getTurno()))){
+                        cadena +=darCirculito(i,k,j,matLogica,"o","●")+"|";
+                    }else{
+                        cadena += darCirculitoGanador(i,k,j,partida.getTablero().getMatrizGanadores(),partida.getTablero().getMatrizLogica());
+                    }
                     
-                    cadena +=darCirculito(i,k,j,matLogica)+"|";
                 }
                 ret += cadena + "\n";
             }
@@ -150,14 +153,14 @@ public class Interfaz {
         return ret;
     }
     //darCirculito va en intefaz
-    public String darCirculito (int i, int k, int j, String [][] matLogica){
+    public String darCirculito (int i, int k, int j, String [][] matLogica,String circulBla, String circulNeg){
         String circulito="";
         String ret="  ";
         if(null!=matLogica[i][j]){
             if(matLogica[i][j].charAt(1)=='1'){
-                circulito="o";
+                circulito=circulBla;
             }else{
-                circulito="●";
+                circulito=circulNeg;
             }
             char COD=matLogica[i][j].toUpperCase().charAt(0);
             if((COD=='C' && k%2!=0) || (COD=='D'&&k%2==0)){
@@ -170,9 +173,15 @@ public class Interfaz {
         return ret;
         
     }
-    //public String darCirculitoGanadores(Partida partida){
-        
-    //}
+    public String darCirculitoGanador(int i, int k, int j, boolean [][] matGanadores, String [][]matLogica){
+        String ret ="";
+       if(matGanadores[i][j]){
+           ret += darCirculito(i,j,k,matLogica,"O","X");
+       }else{
+           ret = darCirculito(i,k,j,matLogica,"o","●");
+       }
+       return ret; 
+    }
     public String []generarArrayOpcionesValidas(){
         String [] cadenaFilas = {"A","B","c"};
         String [] cadenaColumnas = {"1","2","3","4","5","6"};
@@ -235,6 +244,7 @@ public class Interfaz {
                             Jugador jugadorGanador = partida.ganador();
                             if(ganoAlguien(jugadorGanador)){
                                 termino = true;
+                                System.out.print(mostrarMatrizLogica(partida));
                                 
                             }
                         }
@@ -247,6 +257,7 @@ public class Interfaz {
                             Jugador jugadorGanador = partida.ganador();
                             if(ganoAlguien(jugadorGanador)){
                                 termino = true;
+                                System.out.println(mostrarMatrizLogica(partida));
                             }
 
                         }
