@@ -72,6 +72,12 @@ public class Partida {
         }*/
         return ret;
     }
+    public void partidaComenzada(String movimientos){
+        for(int i=0; i<movimientos.length(); i=i+3){
+        
+        }
+        
+    }
     public void sumarPartidasJugadas(){
         this.jugador1.setCantJugadas(this.jugador1.getCantJugadas()+1);
         this.jugador2.setCantJugadas(this.jugador2.getCantJugadas()+1);

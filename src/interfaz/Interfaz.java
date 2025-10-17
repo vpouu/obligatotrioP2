@@ -1,6 +1,7 @@
 package interfaz;
 //tengo qwue explicar en serio como se juega???????
 import dominio.*;
+import java.util.regex.Pattern;
 
 
 public class Interfaz {
@@ -277,7 +278,14 @@ public class Interfaz {
      public void registrarJugador(){
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
+        String regex = "^[a-zA-Z]+$";
+        
         String nom = ingresarNombre();
+        
+        while(!Pattern.matches(regex,nom)){
+            System.out.println("Ingrese una cadena de texto como nombre, no vacia y sin numeros");
+            nom = ingresarNombre();
+        }
         int edad = Auxiliar.ingresarNumero("ingresar edad");
         Jugador jugador=new Jugador(nom,edad);
         this.sistema.agregarJugador(jugador);
