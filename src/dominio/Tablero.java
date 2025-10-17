@@ -107,7 +107,7 @@ public class Tablero {
                 boolean diagonalGanadora=true;
                 j=k;
                 i=0;
-                while(posValida(i,j) && posValida(i,j+1)){
+                while(posValida(i,j) && posValida(i,j+1) && diagonalGanadora){
                     if(matrizLogica[i][j]!=null && matrizLogica[i][j+1] != null){
                         if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
                             diagonalGanadora=false;
@@ -127,12 +127,12 @@ public class Tablero {
         if(!encontro){
                  
             
-            for (int k = 2; k < 5; k++) {
+            for (int k = 0; k < 3; k++) {
                 boolean diagonalGanadora=true;
                 j=k;
                 i=2;
                 //posvalida esta bie????
-                while(posValida(i,j+1) && posValida(i,j)){
+                while(posValida(i,j+1) && posValida(i,j)&& diagonalGanadora){
                     if(matrizLogica[i][j] != null && matrizLogica[i][j+1] != null){
                         if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
                             diagonalGanadora=false;
@@ -205,7 +205,7 @@ public class Tablero {
         char fila=movimiento.toUpperCase().charAt(0);
         for(int i=0;i<arr.length;i++){
             if(arr[i]==fila){
-                if(!matrizLogica[i][Character.getNumericValue(movimiento.charAt(1))-1].equals(null)){
+                if(matrizLogica[i][Character.getNumericValue(movimiento.charAt(1))-1]!=null){
                     if(Character.getNumericValue(matrizLogica[i][Character.getNumericValue(movimiento.charAt(1))-1].charAt(1))==turno){
                         ret=true;
                         agregarMovimiento(movimiento);
