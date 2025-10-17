@@ -1,6 +1,7 @@
 package interfaz;
 //tengo qwue explicar en serio como se juega???????
 import dominio.*;
+import java.util.*;
 
 
 public class Interfaz {
@@ -45,6 +46,10 @@ public class Interfaz {
             }
         }
     }
+    public int validarNumeroJugador(){
+        return 0;
+        //VALIDAR NUMMM
+    }
     public void empezarPartida(){
         
         boolean imprimio =Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
@@ -52,9 +57,20 @@ public class Interfaz {
         int numJugador2 = 0;
         String mensajeError = "Elija un número de los que aparecen en la lista";
         if(imprimio){
-            
-            numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
-            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+            boolean valido=false;
+            while(!valido){
+                try{
+
+                    numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
+                    valido=true;
+                }
+                catch (InputMismatchException e){
+                    System.out.println("Error, solo puede ingresar un número entre 1 y " + sistema.getListaJugadores().size());                
+                }catch (Exception e){
+                    System.out.println("Error");
+                }
+            }
+                            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
             //esto va aca???????
             while(numJugador2==numJugador1){
                 System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
@@ -216,6 +232,7 @@ public class Interfaz {
                             Jugador jugadorGanador = partida.ganador();
                             if(ganoAlguien(jugadorGanador)){
                                 termino = true;
+                                
                             }
                         }
                     }else{
@@ -274,11 +291,24 @@ public class Interfaz {
             }
             return termino;
         }
-     public void registrarJugador(){
+     public void registrarJugador () throws InputMismatchException{
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
         String nom = ingresarNombre();
-        int edad = Auxiliar.ingresarNumero("ingresar edad");
+        boolean valido=false;
+        int edad=0;
+        while(!valido){
+            try{
+
+                edad = Auxiliar.ingresarNumero("ingresar edad", 5,100,"Error, la edad debe estar entre 5 y 100 (inclusive)");
+                valido=true;
+            }
+            catch (InputMismatchException e){
+                System.out.println("Error, solo puede ingresar un número entre 5 y 100");                
+            }catch (Exception e){
+                System.out.println("Error");
+            }
+        }
         Jugador jugador=new Jugador(nom,edad);
         this.sistema.agregarJugador(jugador);
     }
