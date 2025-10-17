@@ -248,7 +248,7 @@ public class Interfaz {
                     String [] opci={"s","n"};
                     partida.getTablero().cambiarTurno();
                     mostrarTurno(partida);
-                    String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar?",opci , "Debe ingresar S o N");
+                    String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
                         termino=true;
                     }
