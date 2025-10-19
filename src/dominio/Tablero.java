@@ -101,7 +101,7 @@ public class Tablero {
             }
             if(columnaGanadora){
                 setMatrizGanadores(crearMatrizGanadores(-1,j,false));
-                encontro=true;
+//                encontro=true;
             }
         }
         
@@ -181,23 +181,25 @@ public class Tablero {
             }
             
         }
-        /*else{
+        else{
             
             if(i==2){
                 
-                for(int k=2; k>=0;k++){
+                for(int k=2; k>=0;k--){
                     matGanadores[k][j]=true;
+                    matGanadores[k][j+1]=true;
                     j--; //pense q era --                    
                 }
             }else{
                 for(int k=0; k<3; k++){
                     matGanadores[k][j]=true;
+                    matGanadores[k][j+1]=true;
                     j--;
                 }
             }
         
         }
-        */
+        
         return matGanadores;
         
         
