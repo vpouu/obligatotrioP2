@@ -63,7 +63,7 @@ public class Partida {
         if(this.tablero.logicaGanadora()==1){
             ret=this.jugador1;
         }else{
-            if(this.tablero.logicaGanadora()==2){
+            if(this.tablero.logicaGanadora()==2){// es necesario???
                 ret=this.jugador2;
             }
         }

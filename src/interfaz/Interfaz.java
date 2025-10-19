@@ -139,10 +139,13 @@ public class Interfaz {
                     cadena = ""+filas.charAt(i) +"|";
                 }
                 for (int j = 0; j < matLogica[i].length; j++) {
-                    if(!(partida.getTablero().hayGanador(partida.getTablero().getTurno()))){
+                    int elTurno = partida.getTablero().logicaGanadora();
+                                       
+                    if(!(partida.getTablero().hayGanador(elTurno))){
                         cadena +=darCirculito(i,k,j,matLogica,"o","●")+"|";
+                        
                     }else{
-                        cadena += darCirculitoGanador(i,k,j,partida.getTablero().getMatrizGanadores(),partida.getTablero().getMatrizLogica(),partida.getTablero().getTurno())+"|";
+                        cadena += darCirculitoGanador(i,k,j,partida.getTablero().getMatrizGanadores(),partida.getTablero().getMatrizLogica(),elTurno)+"|";
                     }
                     
                 }
@@ -178,9 +181,9 @@ public class Interfaz {
         System.out.println(matGanadores[i][j]);
        if(matGanadores[i][j]){
            if(turno==1){
-               ret += darCirculito(i,k,j,matLogica,"O","O");
+               ret += "OO";
            }else{
-               ret += darCirculito(i,k,j,matLogica,"X","X");
+               ret += "XX";
            }          
            
        }else{
