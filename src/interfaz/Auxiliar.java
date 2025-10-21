@@ -39,6 +39,7 @@ public class Auxiliar {
         boolean valido=false;
         System.out.println(texto);
         String ret = in.nextLine();
+        ret=ret.toLowerCase();
         for(String opcion:opciones){
             if(opcion.equalsIgnoreCase(ret)){
                 valido=true;

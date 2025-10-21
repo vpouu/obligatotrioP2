@@ -1,6 +1,7 @@
 package interfaz;
 //tengo qwue explicar en serio como se juega???????
 import dominio.*;
+import interfaz.Auxiliar;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -20,7 +21,7 @@ public class Interfaz {
             System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y VICTORIA POU (283117) \n" + mostrarMenu());
 
             String [] letrasValidas={"a","b","c","d","e"};
-            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son:"+mostrarMenu());
+            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son: \n"+mostrarMenu());
 
             switch (opcion) {
                 case "a":
@@ -28,12 +29,30 @@ public class Interfaz {
                     System.out.println("");
                     break;
                 case "b":
-                    empezarPartida();
+                    boolean imprimio= ingresarJugadoresNuevaPartida();
+                    if(imprimio){
+                        jugando(empezarPartida());
+                    }
                     System.out.println("");
                     break;
                 case "c":
                     Auxiliar.imprimirTitulo("Continuacion de partida");
                     System.out.println("");
+                    imprimio= ingresarJugadoresNuevaPartida();
+                    if(imprimio){
+                        Partida part= empezarPartida();
+                        String losMovimientos =Auxiliar.ingresarPalabras("Ingrese las jugadas:");
+                        part.partidaComenzada(losMovimientos.toUpperCase());
+                        Jugador jugadorGanador = part.ganador();
+                        if(ganoAlguien(jugadorGanador)){
+                            System.out.println(mostrarMatrizLogica(part));
+                                
+                        }else{
+                            jugando(part);
+                        }
+                    }
+                    
+                    
                     break;
                 case "d":
                     Auxiliar.imprimirTitulo("Ranking de invictos: ");
@@ -50,40 +69,49 @@ public class Interfaz {
         return 0;
         //VALIDAR NUMMM
     }
-    public void empezarPartida(){
-        
+    //cambié esto!!!!!!!!!!!!!!!!!
+    public boolean ingresarJugadoresNuevaPartida(){
         boolean imprimio =Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
+        
+        String mensajeError = "Elija un número de los que aparecen en la lista";
+        return imprimio;
+    }
+    public Partida empezarPartida(){
+        Partida part=null;
+        String mensajeError = "Elija un número de los que aparecen en la lista";
+        //boolean imprimio= ingresarJugadoresNuevaPartida();
         int numJugador1 = 0;
         int numJugador2 = 0;
-        String mensajeError = "Elija un número de los que aparecen en la lista";
-        if(imprimio){
-            boolean valido=false;
-            while(!valido){
-                try{
+        
+        boolean valido=false;
+        while(!valido){
+            try{
 
-                    numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
-                    valido=true;
-                }
-                catch (InputMismatchException e){
-                    System.out.println("Error, solo puede ingresar un número entre 1 y " + sistema.getListaJugadores().size());                
-                }catch (Exception e){
-                    System.out.println("Error");
-                }
+                numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
+                valido=true;
             }
-                            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
-            //esto va aca???????
-            while(numJugador2==numJugador1){
-                System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
-                Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
-                numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
-
+            catch (InputMismatchException e){
+                System.out.println("Error, solo puede ingresar un número entre 1 y " + sistema.getListaJugadores().size());                
+            }catch (Exception e){
+                System.out.println("Error");
             }
-            Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
-            Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
-            Partida partida = new Partida(jugador1, jugador2);
-            partida.sumarPartidasJugadas();
-            jugando(partida);
         }
+        numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+        //esto va aca???????
+        while(numJugador2==numJugador1){
+            System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
+            Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
+            numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+
+        }
+        Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
+        Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
+        part = new Partida(jugador1, jugador2);
+        part.sumarPartidasJugadas();
+        // jugando(partida); ANDAAAA?????????
+        
+        return part;
+        
         //elegir jugador a participar, new partida, 
     }
     public void mostrarTurno(Partida partida){
@@ -101,9 +129,7 @@ public class Interfaz {
   
             termino =leerEntrada(partida);
 
-            if(termino){
-                termino = true;
-            }
+            
 
         }
     }
@@ -231,7 +257,7 @@ public class Interfaz {
 //tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
     public boolean leerEntrada(Partida partida){
         boolean termino = false;
-        
+        //borrar????
         String [][] matrizLogica = partida.getTablero().getMatrizLogica();
         //hay que especidicar que esta mal ????
         String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
@@ -298,11 +324,14 @@ public class Interfaz {
                 case "T":
                     System.out.println("Seleccionó empatar");
                     String [] opci={"s","n"};
+                    //ESTA MAL CAMBIAR EL TURNO PORQUE SI EL OTRO DICE QUE NO, NO LE DA LA POSIBLIDAD DE JUGAR, por eso hay que volver a cambiarlo
                     partida.getTablero().cambiarTurno();
                     mostrarTurno(partida);
                     String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
                         termino=true;
+                    }else{
+                        partida.getTablero().cambiarTurno();
                     }
                     //creo que no hay que poner else
                     

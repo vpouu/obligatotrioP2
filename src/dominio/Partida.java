@@ -1,6 +1,5 @@
 package dominio;
 
-import java.util.HashSet;
 
 public class Partida {
     private Jugador jugador1;
@@ -72,9 +71,10 @@ public class Partida {
         }*/
         return ret;
     }
+    //se asume valido significa que no va a intentar invertir algo que no le correspode???
     public void partidaComenzada(String movimientos){
         for(int i=0; i<movimientos.length(); i=i+3){
-           
+           tablero.agregarMovimiento(movimientos.substring(i, i+3));
         }
         
     }
