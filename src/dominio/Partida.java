@@ -61,9 +61,11 @@ public class Partida {
         Jugador ret=null;
         if(this.tablero.logicaGanadora()==1){
             ret=this.jugador1;
+            jugador1.setCantGanadas(jugador1.getCantGanadas()+1);
         }else{
             if(this.tablero.logicaGanadora()==2){// es necesario???
                 ret=this.jugador2;
+                jugador2.setCantGanadas(jugador2.getCantGanadas()+1);
             }
         }
         /*if(ret!=null){
@@ -73,7 +75,7 @@ public class Partida {
     }
     //se asume valido significa que no va a intentar invertir algo que no le correspode???
     public void partidaComenzada(String movimientos){
-        for(int i=0; i<movimientos.length(); i=i+3){
+        for(int i=0; i<movimientos.length(); i=i+4){
            tablero.agregarMovimiento(movimientos.substring(i, i+3));
         }
         

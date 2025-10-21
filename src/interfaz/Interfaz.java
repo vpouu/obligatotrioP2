@@ -41,7 +41,7 @@ public class Interfaz {
                     imprimio= ingresarJugadoresNuevaPartida();
                     if(imprimio){
                         Partida part= empezarPartida();
-                        String losMovimientos =Auxiliar.ingresarPalabras("Ingrese las jugadas:");
+                        String losMovimientos =Auxiliar.ingresarPalabras("Ingrese las jugadas, con espacios:");
                         part.partidaComenzada(losMovimientos.toUpperCase());
                         Jugador jugadorGanador = part.ganador();
                         if(ganoAlguien(jugadorGanador)){
@@ -55,8 +55,11 @@ public class Interfaz {
                     
                     break;
                 case "d":
-                    Auxiliar.imprimirTitulo("Ranking de invictos: ");
-                    System.out.println(this.sistema.listaInvictos());
+                    Auxiliar.imprimirTitulo("Lista de invictos: ");
+                    Auxiliar.imprimirLista(this.sistema.listaInvictos(),"La lista de invictos está vacía", 1);
+                    Auxiliar.imprimirTitulo("\nRanking ganadores en orden decreciente: ");
+                    Auxiliar.imprimirLista(this.sistema.rankingGanadores(), "No hay jugadores", 1);
+                    
                     System.out.println("");
                     //check que funcione sout
                     break;

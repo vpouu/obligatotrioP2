@@ -17,7 +17,7 @@ public class Jugador implements Comparable<Jugador>{
 
     @Override
     public String toString() {
-        return this.nombre;
+        return this.nombre + " cantjugadas: " + cantJugadas + " cantGanadas: "+ cantGanadas ;
     }
     
     public String getNombre(){
@@ -44,17 +44,13 @@ public class Jugador implements Comparable<Jugador>{
     }
     public boolean esInvicto(){
         boolean es = false;
-        if(cantJugadas==0 || cantGanadas==0){
+        //ESRA MAL??
+        if(cantJugadas==0 || (cantGanadas==cantJugadas)){
             es = true;
         }
         return es;
     }
 
-    /**
-     *
-     * @param elNombre
-     * @param laEdad
-     */
     public Jugador(String elNombre, int laEdad){
         this.cantGanadas = 0;
         this.cantJugadas = 0;
@@ -66,5 +62,5 @@ public class Jugador implements Comparable<Jugador>{
     public int compareTo(Jugador j){
         return this.getNombre().compareTo(j.getNombre());
     }
-    
+   
 }

@@ -59,6 +59,15 @@ public class Sistema {
         
     
     }
+    public ArrayList<Jugador> rankingGanadores(){
+        Collections.sort(listaJugadores, new Comparator<Jugador>(){
+            @Override
+            public int compare(Jugador j1, Jugador j2){
+                return j2.getCantGanadas()-j1.getCantGanadas();
+            }
+        });
+        return listaJugadores;
+    }
     //hacer uno que ordene decreciente por cantidad partidas ganadas
     
  }
