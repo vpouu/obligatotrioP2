@@ -99,6 +99,7 @@ public class Interfaz {
                 System.out.println("Error");
             }
         }
+        valido=false;
         numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
         //esto va aca???????
         while(numJugador2==numJugador1){
@@ -263,7 +264,7 @@ public class Interfaz {
         //borrar????
         String [][] matrizLogica = partida.getTablero().getMatrizLogica();
         //hay que especidicar que esta mal ????
-        String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos, lo valido es:"+ mostrarMenuJugando());
+        String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
         String jugada="";
         if(opcion.length()==3){
             jugada=opcion;

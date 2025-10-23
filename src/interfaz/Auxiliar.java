@@ -5,10 +5,10 @@ import java.util.*;
 
 
 public class Auxiliar {
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         ingresarNumero("hola");
         ingresarNumero("hola", 0, 3, "ese numero no es valido");
-    }*/
+    }
     
     public static void imprimirTitulo(String titulo) {
         System.out.println("=====================");
@@ -67,7 +67,22 @@ public class Auxiliar {
         int auxMin=numMin;
         numMin= Math.min(numMin, numMax);
         numMax= Math.max(auxMin, numMax);
-        int ret = in.nextInt();
+        boolean valido=false;
+        int ret=0;
+        while(!valido){
+            try{
+                ret = in.nextInt();
+                valido=true;
+            }
+            catch (InputMismatchException e){
+                System.out.println("Debe ingresar un número entre " + numMin+ " y " + numMax + ". Reingréselo" );        
+                ret=in.nextInt();
+                
+            }catch (Exception e){
+                System.out.println("Error, reingrese número");
+                ret=in.nextInt();
+            }
+        }
         while(ret>numMax || ret<numMin){
             System.out.println(error);
             System.out.println("Reingrese numero");
