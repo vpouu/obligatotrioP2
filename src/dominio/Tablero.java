@@ -47,7 +47,18 @@ public class Tablero {
     public int logicaGanadora(){
         int ret=0;
         if(this.cantMov>=6){
-            if(hayGanador(this.turno)){
+            int otroTurno=1;
+            if(otroTurno==this.turno){
+               otroTurno=2;
+            }
+            if(hayGanador(otroTurno)){
+                ret=otroTurno;
+            }else{
+                if(hayGanador(this.turno)){
+                    ret=this.turno;
+                }
+            }
+           /*if(hayGanador(this.turno)){
                 ret=this.turno;
             }else{
                 int otroTurno=1;
@@ -55,10 +66,10 @@ public class Tablero {
                     otroTurno=2;
                 }
                 if(hayGanador(otroTurno)){
-                    ret=2;
+                    ret=otroTurno;
                 }
            
-            }
+            }*/
         }
         return ret;          
         
