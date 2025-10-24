@@ -57,7 +57,7 @@ public class Interfaz {
                 case "d":
                     Auxiliar.imprimirTitulo("Lista de invictos: ");
                     Auxiliar.imprimirLista(this.sistema.listaInvictos(),"La lista de invictos está vacía", 1);
-                    Auxiliar.imprimirTitulo("\nRanking ganadores en orden decreciente: ");
+                    Auxiliar.imprimirTitulo("Ranking ganadores en orden decreciente: ");
                     Auxiliar.imprimirLista(this.sistema.rankingGanadores(), "No hay jugadores", 1);
                     
                     System.out.println("");
@@ -96,7 +96,7 @@ public class Interfaz {
         Jugador jugador1 = sistema.getListaJugadores().get(numJugador1 - 1);
         Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
         part = new Partida(jugador1, jugador2);
-        part.sumarPartidasJugadas();
+        
         // jugando(partida); ANDAAAA?????????
         
         return part;
@@ -335,7 +335,7 @@ public class Interfaz {
                     break;
                 case "X":
                     termino = true;
-                    Auxiliar.imprimirTitulo(""+partida.eligioPerder());       
+                    Auxiliar.imprimirTitulo("Ganó el jugador: "+partida.eligioPerder());       
                     break;
                     
                 default:

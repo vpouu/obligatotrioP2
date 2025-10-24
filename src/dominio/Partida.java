@@ -18,7 +18,7 @@ public class Partida {
     }
     public Jugador eligioPerder(){
         tablero.cambiarTurno();
-        jugadorActual.setCantGanadas(jugadorActual.getCantGanadas()+1);
+        this.getJugadorActual().setCantGanadas(jugadorActual.getCantGanadas()+1);
         return jugadorActual;
         
     } 
@@ -86,15 +86,19 @@ public class Partida {
         }
         
     }
+    /*
     public void sumarPartidasJugadas(){
         this.jugador1.setCantJugadas(this.jugador1.getCantJugadas()+1);
         this.jugador2.setCantJugadas(this.jugador2.getCantJugadas()+1);
         
         
-    }
+    }*/
     public Partida (Jugador j1, Jugador j2){
         this.jugador1=j1;
+        
         this.jugador2=j2;
+        this.jugador1.setCantJugadas(this.jugador1.getCantJugadas()+1);
+        this.jugador2.setCantJugadas(this.jugador2.getCantJugadas()+1);
         this.tablero=new Tablero();
     }
     
