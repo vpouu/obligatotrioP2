@@ -86,8 +86,9 @@ public class Tablero {
             boolean filaGanadora=true;
             for (int j = 0; j < matrizLogica[i].length-1 && filaGanadora; j+=2) {
                 if(matrizLogica[i][j] != null && matrizLogica[i][j+1] != null){
-                    if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
+                    if((matrizLogica[i][j].charAt(0)!=primeraLetra) || (matrizLogica[i][j+1].charAt(0)!=segundaLetra)){
                         filaGanadora=false;
+                        
                     }
                 }else{
                     filaGanadora=false;
@@ -99,12 +100,13 @@ public class Tablero {
                 
             }
         }
-        for (int j = 0; j < matrizLogica[0].length-1 && !encontro; j+=2) {
+        for (int j = 0; j < matrizLogica[0].length && !encontro; j+=2) {
             boolean columnaGanadora=true;
             for (int i = 0; i < matrizLogica.length && columnaGanadora; i++) {
                 if(matrizLogica[i][j] != null && matrizLogica[i][j +1] != null){
                     if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
                         columnaGanadora=false;
+                       
                     }
                 }else{
                     columnaGanadora = false;
@@ -112,7 +114,7 @@ public class Tablero {
             }
             if(columnaGanadora){
                 setMatrizGanadores(crearMatrizGanadores(-1,j,false));
-//                encontro=true;
+                encontro=true;
             }
         }
         

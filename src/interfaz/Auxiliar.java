@@ -61,7 +61,8 @@ public class Auxiliar {
     public static int ingresarNumero(String texto) {
         return ingresarNumero(texto, Integer.MIN_VALUE, Integer.MAX_VALUE,"error");
     }
-    public static int ingresarNumero(String texto, int numMin, int numMax, String error) {
+    //lleva thows input mismatch
+    public static int ingresarNumero (String texto, int numMin, int numMax, String error){
         Scanner in = new Scanner(System.in);
         System.out.println(texto);
         int auxMin=numMin;
@@ -76,11 +77,11 @@ public class Auxiliar {
             }
             catch (InputMismatchException e){
                 System.out.println("Debe ingresar un número entre " + numMin+ " y " + numMax + ". Reingréselo" );        
-                ret=in.nextInt();
+                in.nextLine();
                 
             }catch (Exception e){
                 System.out.println("Error, reingrese número");
-                ret=in.nextInt();
+                in.nextLine();
             }
         }
         while(ret>numMax || ret<numMin){

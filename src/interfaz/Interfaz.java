@@ -83,24 +83,9 @@ public class Interfaz {
         Partida part=null;
         String mensajeError = "Elija un número de los que aparecen en la lista";
         //boolean imprimio= ingresarJugadoresNuevaPartida();
-        int numJugador1 = 0;
-        int numJugador2 = 0;
         
-        boolean valido=false;
-        while(!valido){
-            try{
-
-                numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
-                valido=true;
-            }
-            catch (InputMismatchException e){
-                System.out.println("Error, solo puede ingresar un número entre 1 y " + sistema.getListaJugadores().size());                
-            }catch (Exception e){
-                System.out.println("Error");
-            }
-        }
-        valido=false;
-        numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
+        int numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
+        int numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
         //esto va aca???????
         while(numJugador2==numJugador1){
             System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
@@ -359,7 +344,7 @@ public class Interfaz {
             }
             return termino;
         }
-     public void registrarJugador () throws InputMismatchException{
+     public void registrarJugador () {
         Auxiliar.imprimirTitulo("Registrar jugador");
 //ver si pedida de datos mas eficiente
         String regex = "^[a-zA-Z]+$";
@@ -370,20 +355,8 @@ public class Interfaz {
             System.out.println("Ingrese una cadena de texto como nombre, no vacia y sin numeros");
             nom = ingresarNombre();
         }
-        boolean valido=false;
-        int edad=0;
-        while(!valido){
-            try{
-
-                edad = Auxiliar.ingresarNumero("ingresar edad", 5,100,"Error, la edad debe estar entre 5 y 100 (inclusive)");
-                valido=true;
-            }
-            catch (InputMismatchException e){
-                System.out.println("Error, solo puede ingresar un número entre 5 y 100");                
-            }catch (Exception e){
-                System.out.println("Error");
-            }
-        }
+        int edad = Auxiliar.ingresarNumero("ingresar edad", 5,100,"Error, la edad debe estar entre 5 y 100 (inclusive)");
+            
         Jugador jugador=new Jugador(nom,edad);
         this.sistema.agregarJugador(jugador);
     }
