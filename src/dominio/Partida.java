@@ -16,6 +16,12 @@ public class Partida {
         return jugadorActual;
     
     }
+    public Jugador eligioPerder(){
+        tablero.cambiarTurno();
+        jugadorActual.setCantGanadas(jugadorActual.getCantGanadas()+1);
+        return jugadorActual;
+        
+    } 
     public void setJugadorActual(Jugador jugadorActual) {
         this.jugadorActual = jugadorActual;
     }

@@ -236,7 +236,7 @@ public class Interfaz {
       boolean gano = false;
       if(jugador != null){
         gano = true;
-        System.out.println("Gano el jugador "+ jugador.getNombre());
+        System.out.println("Gano el jugador/a "+ jugador.getNombre());
         
         
      }
@@ -335,6 +335,7 @@ public class Interfaz {
                     break;
                 case "X":
                     termino = true;
+                    Auxiliar.imprimirTitulo(""+partida.eligioPerder());       
                     break;
                     
                 default:
