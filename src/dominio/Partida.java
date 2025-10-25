@@ -1,11 +1,10 @@
 package dominio;
-
+//Martina Gonzalez(332461) y Victoria Pou (283117)
 
 public class Partida {
     private Jugador jugador1;
     private Jugador jugador2;
     private Tablero tablero;
-    // esta bien ???????
     private Jugador jugadorActual;
 
     public Jugador getJugadorActual() {
@@ -59,10 +58,7 @@ public class Partida {
         this.tablero = tablero;
     }
 
-    //ganador
-    //cual es el turno
-    //xq por ej si es x ya termina el juego
-    
+       
     public Jugador ganador (){
         Jugador ret=null;
         if(this.tablero.logicaGanadora()==1){
@@ -74,9 +70,7 @@ public class Partida {
                 jugador2.setCantGanadas(jugador2.getCantGanadas()+1);
             }
         }
-        /*if(ret!=null){
-            
-        }*/
+        
         return ret;
     }
     //se asume valido significa que no va a intentar invertir algo que no le correspode???
@@ -86,13 +80,7 @@ public class Partida {
         }
         
     }
-    /*
-    public void sumarPartidasJugadas(){
-        this.jugador1.setCantJugadas(this.jugador1.getCantJugadas()+1);
-        this.jugador2.setCantJugadas(this.jugador2.getCantJugadas()+1);
-        
-        
-    }*/
+    
     public Partida (Jugador j1, Jugador j2){
         this.jugador1=j1;
         

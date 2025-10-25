@@ -1,5 +1,5 @@
 package dominio;
-/* Victoria Pou y Martina Gonzalez*/
+/* Victoria Pou (283117) y Martina Gonzalez (332461)*/
 import java.util.*;
 
 
@@ -9,10 +9,8 @@ public class Sistema {
      * @param args the command line arguments
      */
     
-    //ranking
-    //suma poner comentarios
     private ArrayList<Jugador> listaJugadores;
-    //hacer getter o setter de la lista?
+    
     public Sistema (){
         listaJugadores= new ArrayList<>();
     }

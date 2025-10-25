@@ -1,7 +1,7 @@
 package interfaz;
 import java.util.*;
 
-/* Victoria Pou y Martina Gonzalez*/
+/* Victoria Pou (283117) y Martina Gonzalez(332461)*/
 
 
 public class Auxiliar {
@@ -61,7 +61,6 @@ public class Auxiliar {
     public static int ingresarNumero(String texto) {
         return ingresarNumero(texto, Integer.MIN_VALUE, Integer.MAX_VALUE,"error");
     }
-    //lleva thows input mismatch
     public static int ingresarNumero (String texto, int numMin, int numMax, String error){
         Scanner in = new Scanner(System.in);
         System.out.println(texto);
@@ -96,5 +95,5 @@ public class Auxiliar {
         System.out.println(texto);
         return in.nextLine();
     }
-    //cuando me pide ingresar la edad si le pongo una letra se rompe el porgrama
+    
 }

@@ -2,12 +2,11 @@ package dominio;
 
 
 /*
- Martina Gonzalez y Victoria Pou*/
+ Martina Gonzalez (332461) y Victoria Pou (283117) */
 
 public class Jugador implements Comparable<Jugador>{
     private String nombre;
     private int edad;
-    //?????????
     private int cantGanadas;
     private int cantJugadas;
     public void setNombre( String elNombre){

@@ -1,5 +1,4 @@
 package interfaz;
-//tengo qwue explicar en serio como se juega???????
 import dominio.*;
 import interfaz.Auxiliar;
 import java.util.*;
@@ -97,12 +96,10 @@ public class Interfaz {
         Jugador jugador2 = sistema.getListaJugadores().get(numJugador2 - 1);
         part = new Partida(jugador1, jugador2);
         
-        // jugando(partida); ANDAAAA?????????
-        
+              
         return part;
         
-        //elegir jugador a participar, new partida, 
-    }
+        }
     public void mostrarTurno(Partida partida){
         String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual() + ")";
         System.out.println(ret);
@@ -170,7 +167,7 @@ public class Interfaz {
         }
         return ret;
     }
-    //darCirculito va en intefaz
+    
     public String darCirculito (int i, int k, int j, String [][] matLogica,String circulBla, String circulNeg){
         String circulito="";
         String ret="  ";
@@ -193,7 +190,7 @@ public class Interfaz {
     }
     public String darCirculitoGanador(int i, int k, int j, boolean [][] matGanadores, String [][]matLogica, int turno){
         String ret ="";
-        System.out.println(matGanadores[i][j]);
+        
        if(matGanadores[i][j]){
            if(turno==1){
                ret += "OO";
@@ -243,7 +240,7 @@ public class Interfaz {
       return gano;
   } 
 
-//tenemos que hacer un metodo en tablero que valide si se puede invertir(si ya hay una ficha y es de jugador) y que llame al agregar movimiento. otro metodo en interfaz qaue llame el de si es valido invertir y eso lo ponemos en el case
+
     public boolean leerEntrada(Partida partida){
         boolean termino = false;
         //borrar????
@@ -283,17 +280,7 @@ public class Interfaz {
                                 termino = true;
                                 System.out.print(mostrarMatrizLogica(partida));
                             
-                            //imprimir mat ganadores para probar
-                            boolean [][] mat = partida.getTablero().getMatrizGanadores();
-                            for (int i = 0; i < mat.length; i++) {
-                                for (int j = 0; j < mat[0].length; j++) {
-                                    System.out.print(mat[i][j] + "  ");
-
-                                }
-                                System.out.println("");
-
-                            }
-                            }
+                           }
 
                         }
                         

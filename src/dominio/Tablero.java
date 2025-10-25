@@ -1,5 +1,5 @@
 package dominio;
-
+//Martina Gonzalez(332461) y Victoria Pou (283117)
 
 public class Tablero {
     private String [][] matrizLogica;
@@ -58,18 +58,6 @@ public class Tablero {
                     ret=this.turno;
                 }
             }
-           /*if(hayGanador(this.turno)){
-                ret=this.turno;
-            }else{
-                int otroTurno=1;
-                if(otroTurno==this.turno){
-                    otroTurno=2;
-                }
-                if(hayGanador(otroTurno)){
-                    ret=otroTurno;
-                }
-           
-            }*/
         }
         return ret;          
         
@@ -152,7 +140,6 @@ public class Tablero {
                 boolean diagonalGanadora=true;
                 j=k;
                 i=2;
-                //posvalida esta bie????
                 while(posValida(i,j+1) && posValida(i,j)&& diagonalGanadora){
                     if(matrizLogica[i][j] != null && matrizLogica[i][j+1] != null){
                         if(matrizLogica[i][j].charAt(0)!=primeraLetra || matrizLogica[i][j+1].charAt(0)!=segundaLetra){
@@ -176,7 +163,7 @@ public class Tablero {
         return encontro;
     }
     
-    //si gano una fila paso j=-1 por parametro, si gano una columna paso i=-1 por parametro, en ambos casos esDiagonal = false
+    //si gano una fila paso j=-1 por parametro, si gano una columna paso i=-1 por parametro, en ambos casos: esDiagonal = false
     //si gano una diagonal, esDiagonal= true, i=fila donde arranca, j=col donde comienza, asi se de que diagonal se trata
     public boolean [][] crearMatrizGanadores(int i, int j, boolean esDiagonal){
         boolean [][] matGanadores = new boolean[3][6];
@@ -201,7 +188,7 @@ public class Tablero {
                 for(int k=2; k>=0;k--){
                     matGanadores[k][j]=true;
                     matGanadores[k][j+1]=true;
-                    j--; //pense q era --                    
+                    j--;                     
                 }
             }else{
                 for(int k=0; k<3; k++){
@@ -223,10 +210,6 @@ public class Tablero {
     }
     
     
-    //public void analizarEntrada(){}
-    //si el ingreso es valido, eso va en la interfaz pero si el movimiento no es valido se verifica en
-    //validar que jugador invierta solo las d ee´l
-    //ARREGLAR QUE SI YA HAY UNA FICHA PUESTA QUE NO DEJE VOLVER A PONER!!!!!!!!!!!!!!!!!!!
     public boolean agregarMovimiento(String movimiento){
         boolean pudoAgregarlo=true;
         String movMayus = movimiento.toUpperCase();
@@ -339,21 +322,4 @@ public class Tablero {
         return mov;
     }
    
-    //public String
-    
-    //si es I y no hay ninguna que hago
-    /*● ○
-    public boolean terminarPartida(){
-    }
-    public int quienGano(){
-    
-    }
-    public int quienGano(){
-        return 0; 
-    }
-    public String jugadaGanadora(){
-    
-    }
-*/
-    
 }
