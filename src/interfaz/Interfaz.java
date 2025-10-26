@@ -306,10 +306,7 @@ public class Interfaz {
                     String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
                         termino=true;
-                    }else{
-                        partida.getTablero().cambiarTurno();
                     }
-                    //creo que no hay que poner else
                     
                     break;
                 case "H":

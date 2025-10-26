@@ -30,7 +30,7 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     public int getCantJugadas(){
-        return this.cantGanadas;
+        return this.cantJugadas;
     }
     public void setCantJugadas(int cant){
         this.cantJugadas = cant;
