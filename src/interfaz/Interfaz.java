@@ -101,7 +101,7 @@ public class Interfaz {
         
         }
     public void mostrarTurno(Partida partida){
-        String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual() + ")";
+        String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual().getNombre() + ")";
         System.out.println(ret);
     }
     public void jugando(Partida partida){

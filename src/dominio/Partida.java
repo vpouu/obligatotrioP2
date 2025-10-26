@@ -6,33 +6,6 @@ public class Partida {
     private Jugador jugador2;
     private Tablero tablero;
     private Jugador jugadorActual;
-
-    public Jugador getJugadorActual() {
-        this.jugadorActual=jugador2;
-        if(tablero.getTurno()==1){
-            this.jugadorActual=jugador1;
-        }
-        return jugadorActual;
-    
-    }
-    public Jugador eligioPerder(){
-        tablero.cambiarTurno();
-        this.getJugadorActual().setCantGanadas(jugadorActual.getCantGanadas()+1);
-        return jugadorActual;
-        
-    } 
-    public void setJugadorActual(Jugador jugadorActual) {
-        this.jugadorActual = jugadorActual;
-    }
-    
-    public String jugadorBlaONeg(){
-        String ret="Blanco";
-        if(this.tablero.getTurno()==2){
-            ret="Negro";
-        }
-        return ret;
-    }
-      
     
     public Jugador getJugador1() {
         return jugador1;
@@ -57,8 +30,32 @@ public class Partida {
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
+    public Jugador getJugadorActual() {
+        this.jugadorActual=jugador2;
+        if(tablero.getTurno()==1){
+            this.jugadorActual=jugador1;
+        }
+        return jugadorActual;
+    
+    }
+    public void setJugadorActual(Jugador jugadorActual) {
+        this.jugadorActual = jugadorActual;
+    }
+    
+    public Jugador eligioPerder(){
+        tablero.cambiarTurno();
+        this.getJugadorActual().setCantGanadas(jugadorActual.getCantGanadas()+1);
+        return jugadorActual;
+        
+    } 
 
-       
+    public String jugadorBlaONeg(){
+        String ret="Blanco";
+        if(this.tablero.getTurno()==2){
+            ret="Negro";
+        }
+        return ret;
+    }
     public Jugador ganador (){
         Jugador ret=null;
         if(this.tablero.logicaGanadora()==1){

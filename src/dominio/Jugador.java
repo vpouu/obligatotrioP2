@@ -9,26 +9,19 @@ public class Jugador implements Comparable<Jugador>{
     private int edad;
     private int cantGanadas;
     private int cantJugadas;
-    public void setNombre( String elNombre){
-        this.nombre = elNombre;
-    
-    }
-
-    @Override
-    public String toString() {
-        return this.nombre + " cantjugadas: " + cantJugadas + " cantGanadas: "+ cantGanadas ;
-    }
     
     public String getNombre(){
         return this.nombre;
     }
-    public void setEdad(int laEdad){
-        this.edad = laEdad;
+    public void setNombre( String elNombre){
+        this.nombre = elNombre;
     }
     public int getEdad(){
         return this.edad;
     }
-
+    public void setEdad(int laEdad){
+        this.edad = laEdad;
+    }
     public int getCantJugadas(){
         return this.cantJugadas;
     }
@@ -41,6 +34,7 @@ public class Jugador implements Comparable<Jugador>{
     public void setCantGanadas(int cant){
         this.cantGanadas = cant;
     }
+    
     public boolean esInvicto(){
         boolean es = false;
         //ESRA MAL??
@@ -56,6 +50,10 @@ public class Jugador implements Comparable<Jugador>{
         this.nombre = elNombre;
         this.edad = laEdad;
         
+    }
+    @Override
+    public String toString() {
+        return this.nombre + " cantjugadas: " + cantJugadas + " cantGanadas: "+ cantGanadas ;
     }
     @Override
     public int compareTo(Jugador j){

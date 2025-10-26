@@ -3,23 +3,27 @@ package dominio;
 
 public class Tablero {
     private String [][] matrizLogica;
-    private int turno;
+    private int turno;//el blanco es 1, el negro es 2
     private boolean mostrarFilasYColumnas = true;
     private int cantMov;
     private boolean [][] matrizGanadores;
-    //el blanco es 1, el negro es 2
+    
     public Tablero(){
         this.turno = 1;
         this.matrizLogica = new String[3][6];
-        this.cantMov=0;
-        
-        
+        this.cantMov=0;   
     }
-    public void setCantMov(int cant){
-        this.cantMov = cant;
+    public String[][] getMatrizLogica() {
+        return matrizLogica;
     }
-    public int getCantMov(){
-        return cantMov;
+    private void setMatrizLogica(String[][] matrizLogica) {
+        this.matrizLogica = matrizLogica;
+    }
+    public int getTurno() {
+        return turno;
+    }
+    public void setTurno(int turno) {
+        this.turno = turno;
     }
     public boolean getMostrarFilasYColumnas(){
         return mostrarFilasYColumnas;
@@ -27,29 +31,20 @@ public class Tablero {
     public void setMostrarFilasYColumnas(boolean mostrar){
         this.mostrarFilasYColumnas = mostrar;
     }
-
-    public String[][] getMatrizLogica() {
-        return matrizLogica;
+    public int getCantMov(){
+        return cantMov;
     }
-
-    private void setMatrizLogica(String[][] matrizLogica) {
-        this.matrizLogica = matrizLogica;
+    public void setCantMov(int cant){
+        this.cantMov = cant;
     }
-
-    public int getTurno() {
-        return turno;
-    }
-
-    public void setTurno(int turno) {
-        this.turno = turno;
-    }
-    
     public boolean [][] getMatrizGanadores(){
         return matrizGanadores;
     }
     public void setMatrizGanadores(boolean [][] laMat){
         this.matrizGanadores = laMat;        
     }
+    
+    
     public int logicaGanadora(){
         int ret=0;
         if(this.cantMov>=6){
