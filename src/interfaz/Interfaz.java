@@ -246,45 +246,57 @@ public class Interfaz {
         //borrar????
         String [][] matrizLogica = partida.getTablero().getMatrizLogica();
         //hay que especidicar que esta mal ????
-        String opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
+        String opcion = "";
         String jugada="";
-        if(opcion.length()==3){
-            jugada=opcion;
-            opcion="J";
+        if(partida.getTablero().empataron()){
+            opcion = "E";
+            termino = true;
+        }else{
+            opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
+            jugada="";
+            if(opcion.length()==3){
+                jugada=opcion;
+                opcion="J";
+            
+            }
             
         }
+        
             switch (opcion.toUpperCase()) {
                 case "J":                   
                     
                     Auxiliar.imprimirTitulo("JUGANDO...");
-                    if (jugada.toUpperCase().charAt(2)=='I') {
-                        if(!partida.getTablero().puedoInvertirFicha(jugada)){
-                            System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
-                        }else {
-                            System.out.println("Ficha invertida con éxito");
-                            Jugador jugadorGanador = partida.ganador();
-                            if(ganoAlguien(jugadorGanador)){
-                                termino = true;
-                                System.out.print(mostrarMatrizLogica(partida));
-                                
-                            }
-                        }
-                    }else{
-                        
-                            
-                        if(!partida.getTablero().agregarMovimiento(jugada)){
-                            System.out.println("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
-                        }else{
-                            Jugador jugadorGanador = partida.ganador();
-                            if(ganoAlguien(jugadorGanador)){
-                                termino = true;
-                                System.out.print(mostrarMatrizLogica(partida));
-                            
-                           }
+                    
+                        if (jugada.toUpperCase().charAt(2)=='I') {
+                            if(!partida.getTablero().puedoInvertirFicha(jugada)){
+                                System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
+                            }else {
+                                System.out.println("Ficha invertida con éxito");
+                                Jugador jugadorGanador = partida.ganador();
+                                if(ganoAlguien(jugadorGanador)){
+                                    termino = true;
+                                    System.out.print(mostrarMatrizLogica(partida));
 
-                        }
+                                }
+                            }
+                        }else{
+
+
+                            if(!partida.getTablero().agregarMovimiento(jugada)){
+                                System.out.println("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
+                            }else{
+                                Jugador jugadorGanador = partida.ganador();
+                                if(ganoAlguien(jugadorGanador)){
+                                    termino = true;
+                                    System.out.print(mostrarMatrizLogica(partida));
+
+                               }
+
+                            }
+                            
                         
-                    }
+                        }
+                    
                     
                     break;
                 case "B"://se muestran filas y columnas
@@ -300,11 +312,11 @@ public class Interfaz {
                 case "T":
                     System.out.println("Seleccionó empatar");
                     String [] opci={"s","n"};
-                    //ESTA MAL CAMBIAR EL TURNO PORQUE SI EL OTRO DICE QUE NO, NO LE DA LA POSIBLIDAD DE JUGAR, por eso hay que volver a cambiarlo
                     partida.getTablero().cambiarTurno();
                     mostrarTurno(partida);
                     String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
+                        System.out.println("Empataron");
                         termino=true;
                     }
                     
@@ -321,7 +333,9 @@ public class Interfaz {
                     termino = true;
                     Auxiliar.imprimirTitulo("Ganó el jugador: "+partida.eligioPerder());       
                     break;
-                    
+                case "E":
+                    termino = true;
+                    Auxiliar.imprimirTitulo("Empataron porque se lleno el tablero");
                 default:
                     System.out.println("Las opciones valias son y el texto de marti");
                     break;
@@ -337,7 +351,7 @@ public class Interfaz {
         String nom = ingresarNombre();
         
         while(!Pattern.matches(regex,nom)){
-            System.out.println("Ingrese una cadena de texto como nombre, no vacia y sin numeros");
+            System.out.println("Ingrese una cadena de texto como nombre, no vacía y sin números");
             nom = ingresarNombre();
         }
         int edad = Auxiliar.ingresarNumero("ingresar edad", 5,100,"Error, la edad debe estar entre 5 y 100 (inclusive)");

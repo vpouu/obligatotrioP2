@@ -15,6 +15,12 @@ public class Tablero {
         
         
     }
+    public void setCantMov(int cant){
+        this.cantMov = cant;
+    }
+    public int getCantMov(){
+        return cantMov;
+    }
     public boolean getMostrarFilasYColumnas(){
         return mostrarFilasYColumnas;
     }
@@ -321,5 +327,21 @@ public class Tablero {
         }           
         return mov;
     }
-   
+    public boolean empataron(){
+        boolean emp = false;
+        if(this.cantMov>16){
+            emp =true;
+            for (int i = 0; i < matrizLogica.length; i++) {
+                for (int j = 0; j < matrizLogica[i].length; j++) {
+                    if(matrizLogica[i][j]==null){
+                        emp = false;
+                    }
+                
+                }
+            
+            }
+        }
+
+        return emp;
+    }
 }
