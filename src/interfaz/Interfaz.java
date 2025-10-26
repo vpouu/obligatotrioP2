@@ -46,7 +46,7 @@ public class Interfaz {
                     imprimio= ingresarJugadoresNuevaPartida();
                     if(imprimio){
                         Partida part= empezarPartida();
-                        String losMovimientos =Auxiliar.ingresarPalabras("Ingrese las jugadas, con espacios:");
+                        String losMovimientos =Auxiliar.ingresarPalabras("Ingrese las jugadas, con espacios (ej.: A3D B3C A3I C4C):");
                         part.partidaComenzada(losMovimientos.toUpperCase());
                         Jugador jugadorGanador = part.ganador();
                         if(ganoAlguien(jugadorGanador)){
