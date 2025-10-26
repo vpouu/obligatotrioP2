@@ -4,10 +4,6 @@ import java.util.*;
 
 
 public class Sistema {
-
-    /**
-     * @param args the command line arguments
-     */
     
     private ArrayList<Jugador> listaJugadores;
     
@@ -34,7 +30,7 @@ public class Sistema {
                 
     
     }
-    //es un set?
+
     public void agregarJugador(Jugador elJugador){
         listaJugadores.add(elJugador);       
     }
@@ -66,7 +62,7 @@ public class Sistema {
         });
         return listaJugadores;
     }
-    //hacer uno que ordene decreciente por cantidad partidas ganadas
+    
     
  }
 

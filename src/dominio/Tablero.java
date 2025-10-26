@@ -242,7 +242,7 @@ public class Tablero {
         if(pudoAgregarlo){
             this.cantMov++;
         }
-        //ver su es apropiadocamviar turno aca
+        
         return pudoAgregarlo;
         
     }
@@ -293,8 +293,6 @@ public class Tablero {
                         matrizLogica[i][j]=""+letraOpuesta(matrizLogica[i][j].charAt(0))+turno;
                         if(hayGanador(this.turno)){
                             mov=""+(transformarNumALetra(i))+""+(j+1)+"I";
-                                                  
-                            System.out.println(transformarNumALetra(i));
                         }
                         matrizLogica[i][j]=aux;
                         

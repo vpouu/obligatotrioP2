@@ -37,7 +37,7 @@ public class Jugador implements Comparable<Jugador>{
     
     public boolean esInvicto(){
         boolean es = false;
-        //ESRA MAL??
+        
         if(cantJugadas==0 || (cantGanadas==cantJugadas)){
             es = true;
         }

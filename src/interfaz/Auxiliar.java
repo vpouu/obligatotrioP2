@@ -11,10 +11,16 @@ public class Auxiliar {
     }
     
     public static void imprimirTitulo(String titulo) {
-        System.out.println("=====================");
+        System.out.println("=================================================");
         System.out.println(titulo);
-        System.out.println("=====================");
+        System.out.println("=================================================");
         System.out.println("");
+    }
+    public static void imprimirSubtitulo(String subtitulo){
+        System.out.println("-----------------------------------------------------------");
+        System.out.println(subtitulo);
+        System.out.println("-----------------------------------------------------------");
+        
     }
     
     public static boolean imprimirLista (ArrayList lista, String error, int minLength){
@@ -46,7 +52,7 @@ public class Auxiliar {
             }
         }
         while (!valido){
-            System.out.println(mensajeDeError);
+            imprimirSubtitulo(mensajeDeError);
             ret = in.nextLine();
             for(String opcion:opciones){
                 if(opcion.equalsIgnoreCase(ret)){
@@ -84,7 +90,7 @@ public class Auxiliar {
             }
         }
         while(ret>numMax || ret<numMin){
-            System.out.println(error);
+            imprimirSubtitulo(error);
             System.out.println("Reingrese numero");
             ret=in.nextInt();
         }

@@ -12,6 +12,11 @@ public class Interfaz {
     }
      public void iniciar(){
         Auxiliar.imprimirTitulo("MEDIO TA TE TI");
+         System.out.println("Explicación breve del juego:"
+                 + "\n- El objetivo del juego es formar círculos (jugador blanco) o cruces (jugador negro)"
+                 + "\n- Comienza el jugador que se elige primero al comenzar la partida (va a ser el blanco)"
+                 + "\n- Se pueden formar círculos o cruces, tanto en vertical, como en horizontal o diagonal"
+                 + "\n ");
         String opcion = "a";
         while (!opcion.equalsIgnoreCase("e")) {
 
@@ -20,7 +25,8 @@ public class Interfaz {
             System.out.println("Trabajo desarrollado por: MARTINA GONZÁLEZ (332461) Y VICTORIA POU (283117) \n" + mostrarMenu());
 
             String [] letrasValidas={"a","b","c","d","e"};
-            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "esas no son letras válidas, las letras validas son: \n"+mostrarMenu());
+            System.out.println("");
+            opcion = Auxiliar.ingresarLetra("Ingresar opción: ", letrasValidas, "Ingrese una de las letras válidas del menú (a,b,c,d,e): \n"+mostrarMenu());
 
             switch (opcion) {
                 case "a":
@@ -56,11 +62,12 @@ public class Interfaz {
                 case "d":
                     Auxiliar.imprimirTitulo("Lista de invictos: ");
                     Auxiliar.imprimirLista(this.sistema.listaInvictos(),"La lista de invictos está vacía", 1);
+                    System.out.println("");
                     Auxiliar.imprimirTitulo("Ranking ganadores en orden decreciente: ");
                     Auxiliar.imprimirLista(this.sistema.rankingGanadores(), "No hay jugadores", 1);
                     
                     System.out.println("");
-                    //check que funcione sout
+                    
                     break;
                 default:
                     break;
@@ -69,9 +76,8 @@ public class Interfaz {
     }
     public int validarNumeroJugador(){
         return 0;
-        //VALIDAR NUMMM
-    }
-    //cambié esto!!!!!!!!!!!!!!!!!
+        }
+    
     public boolean ingresarJugadoresNuevaPartida(){
         boolean imprimio =Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
         
@@ -81,13 +87,13 @@ public class Interfaz {
     public Partida empezarPartida(){
         Partida part=null;
         String mensajeError = "Elija un número de los que aparecen en la lista";
-        //boolean imprimio= ingresarJugadoresNuevaPartida();
+        
         
         int numJugador1 = Auxiliar.ingresarNumero("Ingrese numero del jugador que arranca",1,sistema.getListaJugadores().size(),mensajeError);
         int numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
-        //esto va aca???????
+        
         while(numJugador2==numJugador1){
-            System.out.println("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
+            Auxiliar.imprimirSubtitulo("Se deben elegir jugadores diferentes, reingrese el número del jugador que va segundo");
             Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
             numJugador2 = Auxiliar.ingresarNumero("Ingrese numero del otro jugador",1,sistema.getListaJugadores().size(),mensajeError);
 
@@ -102,17 +108,17 @@ public class Interfaz {
         }
     public void mostrarTurno(Partida partida){
         String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual().getNombre() + ")";
-        System.out.println(ret);
+        Auxiliar.imprimirSubtitulo(ret);
     }
     public void jugando(Partida partida){
         boolean termino=false;
         
         while(!termino){
-            mostrarTurno(partida);
+            
             
             System.out.print(mostrarMatrizLogica(partida));
+            mostrarTurno(partida);
             System.out.println(mostrarMenuJugando());
-  
             termino =leerEntrada(partida);
 
             
@@ -121,19 +127,21 @@ public class Interfaz {
     }
     public String mostrarMenuJugando(){
         String ret="Puede ingresar: \n"
-                + "-FilaColumnaSentido (ej.: A2C), para colocar su ficha (circulitos)"
-                + " \n Fila: A, B o C"
-                + " \n Columna: 1 a 6"
-                + " \n Sentido C o D"
-                + "\n-FilColumnaI (ej.:A2I) si quiere invertir una ficha propia, de C pasa a D o al revés (se indica la filas y columnas de la forma arriba)"
-                + "\n'X', si usted quiere terminar la partida y perder"
-                + "\n'H' si quiere ayuda"
-                + "\n'B' si quiere ver los títulos en los bordes"
-                + "\n'N' si no quiere ver los títulos en los bordes"
-                + "\n'T', si termina en empate";
+                + "-FilaColumnaSentido (ej.: A2C), para COLOCAR su FICHA (circulitos)"
+                + " \n  Fila: A, B o C"
+                + " \n  Columna: del 1 a 6"
+                + " \n  Sentido: C o D"
+                + "\n-FilColumnaI (ej.:A2I) si quiere INVERTIR una FICHA PROPIA, de C pasa a D o al revés (se indican la filas y columnas igual que arriba)"
+                + "\n X: TERMINA la partida y usted pierde"
+                + "\n H: solicita AYUDA (jugada ganadora)"
+                + "\n B: solicita MOSTRAR los ÍNDICES(A,B,C,1,...,6) en los bordes del tablero"
+                + "\n N: solicita OCULTAR los ÍNDICES(A,B,C,1,...,6) de los bordes del tablero"
+                + "\n T: solicita EMPATE";
         return ret;
     }
     public String mostrarMatrizLogica (Partida partida){
+        System.out.println("");
+        
         String matLogica [][] = partida.getTablero().getMatrizLogica();
         String ret ="";
         boolean mostrarFilasYColumnas = partida.getTablero().getMostrarFilasYColumnas();
@@ -233,7 +241,7 @@ public class Interfaz {
       boolean gano = false;
       if(jugador != null){
         gano = true;
-        System.out.println("Gano el jugador/a "+ jugador.getNombre());
+        Auxiliar.imprimirTitulo("Gano el jugador/a "+ jugador.getNombre());
         
         
      }
@@ -243,16 +251,15 @@ public class Interfaz {
 
     public boolean leerEntrada(Partida partida){
         boolean termino = false;
-        //borrar????
         String [][] matrizLogica = partida.getTablero().getMatrizLogica();
-        //hay que especidicar que esta mal ????
         String opcion = "";
         String jugada="";
         if(partida.getTablero().empataron()){
             opcion = "E";
             termino = true;
         }else{
-            opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "Lo/s caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
+            System.out.println("");
+            opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "El/Los caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
             jugada="";
             if(opcion.length()==3){
                 jugada=opcion;
@@ -269,9 +276,9 @@ public class Interfaz {
                     
                         if (jugada.toUpperCase().charAt(2)=='I') {
                             if(!partida.getTablero().puedoInvertirFicha(jugada)){
-                                System.out.println("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
+                                Auxiliar.imprimirSubtitulo("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
                             }else {
-                                System.out.println("Ficha invertida con éxito");
+                                Auxiliar.imprimirSubtitulo("Ficha invertida con éxito");
                                 Jugador jugadorGanador = partida.ganador();
                                 if(ganoAlguien(jugadorGanador)){
                                     termino = true;
@@ -283,7 +290,7 @@ public class Interfaz {
 
 
                             if(!partida.getTablero().agregarMovimiento(jugada)){
-                                System.out.println("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
+                                Auxiliar.imprimirSubtitulo("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
                             }else{
                                 Jugador jugadorGanador = partida.ganador();
                                 if(ganoAlguien(jugadorGanador)){
@@ -316,7 +323,7 @@ public class Interfaz {
                     mostrarTurno(partida);
                     String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
                     if(quiso.equalsIgnoreCase("S")){
-                        System.out.println("Empataron");
+                        Auxiliar.imprimirTitulo("Empataron");
                         termino=true;
                     }
                     
@@ -324,9 +331,9 @@ public class Interfaz {
                 case "H":
                     System.out.println("Seleccionó ayuda");
                     if(partida.getTablero().movimientoAyuda()==null){
-                        System.out.println("No hay jugada posible para ganar");
+                        Auxiliar.imprimirSubtitulo("No hay jugada posible para ganar");
                     }else{
-                        System.out.println("La jugada ganadora es: "+ partida.getTablero().movimientoAyuda());
+                        Auxiliar.imprimirSubtitulo("La jugada ganadora es: "+ partida.getTablero().movimientoAyuda());
                     }
                     break;
                 case "X":
@@ -337,7 +344,7 @@ public class Interfaz {
                     termino = true;
                     Auxiliar.imprimirTitulo("Empataron porque se lleno el tablero");
                 default:
-                    System.out.println("Las opciones valias son y el texto de marti");
+                    Auxiliar.imprimirSubtitulo("Las opciones válidas son: "+ mostrarMenuJugando());
                     break;
                     
             }
@@ -345,13 +352,12 @@ public class Interfaz {
         }
      public void registrarJugador () {
         Auxiliar.imprimirTitulo("Registrar jugador");
-//ver si pedida de datos mas eficiente
         String regex = "^[a-zA-Z]+$";
         
         String nom = ingresarNombre();
         
         while(!Pattern.matches(regex,nom)){
-            System.out.println("Ingrese una cadena de texto como nombre, no vacía y sin números");
+            Auxiliar.imprimirSubtitulo("Ingrese una cadena de texto como nombre, no vacía y sin números");
             nom = ingresarNombre();
         }
         int edad = Auxiliar.ingresarNumero("ingresar edad", 5,100,"Error, la edad debe estar entre 5 y 100 (inclusive)");
