@@ -333,6 +333,7 @@ public class Interfaz {
                 break;
             case "X":
                 termino = true;
+                partida.eligioPerder();
                 Auxiliar.imprimirTitulo("Perdió el jugador/a: " + partida.getJugadorActual());
                 break;
             case "E":

@@ -71,6 +71,12 @@ public class Partida {
         }
         
     }
+    public void eligioPerder(){
+        tablero.cambiarTurno();
+        this.getJugadorActual().setCantGanadas(jugadorActual.getCantGanadas()+1);
+        tablero.cambiarTurno();
+        
+    } 
     
     public Partida (Jugador j1, Jugador j2){
         this.jugador1=j1;
