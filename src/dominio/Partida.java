@@ -42,12 +42,12 @@ public class Partida {
         this.jugadorActual = jugadorActual;
     }
     
-    public Jugador eligioPerder(){
+    /*public Jugador eligioPerder(){
         tablero.cambiarTurno();
         this.getJugadorActual().setCantGanadas(jugadorActual.getCantGanadas()+1);
         return jugadorActual;
         
-    } 
+    } */
 
     public String jugadorBlaONeg(){
         String ret="Blanco";

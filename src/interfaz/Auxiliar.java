@@ -5,10 +5,7 @@ import java.util.*;
 
 
 public class Auxiliar {
-    public static void main(String[] args) {
-        ingresarNumero("hola");
-        ingresarNumero("hola", 0, 3, "ese numero no es valido");
-    }
+    
     
     public static void imprimirTitulo(String titulo) {
         System.out.println("=================================================");

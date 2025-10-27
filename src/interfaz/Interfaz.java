@@ -3,7 +3,7 @@ import dominio.*;
 import interfaz.Auxiliar;
 import java.util.*;
 import java.util.regex.Pattern;
-
+/* Victoria Pou (283117) y Martina Gonzalez(332461)*/
 public class Interfaz {
     private final Sistema sistema;
 
@@ -132,11 +132,11 @@ public class Interfaz {
                 + " \n  Columna: del 1 a 6"
                 + " \n  Sentido: C o D"
                 + "\n-FilColumnaI (ej.:A2I) si quiere INVERTIR una FICHA PROPIA, de C pasa a D o al revés (se indican la filas y columnas igual que arriba)"
-                + "\n X: TERMINA la partida y usted pierde"
-                + "\n H: solicita AYUDA (jugada ganadora)"
-                + "\n B: solicita MOSTRAR los ÍNDICES(A,B,C,1,...,6) en los bordes del tablero"
-                + "\n N: solicita OCULTAR los ÍNDICES(A,B,C,1,...,6) de los bordes del tablero"
-                + "\n T: solicita EMPATE";
+                + "\n-X: TERMINA la partida y usted pierde"
+                + "\n-H: solicita AYUDA (jugada ganadora)"
+                + "\n-B: solicita MOSTRAR los ÍNDICES(A,B,C,1,...,6) en los bordes del tablero"
+                + "\n-N: solicita OCULTAR los ÍNDICES(A,B,C,1,...,6) de los bordes del tablero"
+                + "\n-T: solicita EMPATE";
         return ret;
     }
     public String mostrarMatrizLogica (Partida partida){
@@ -338,7 +338,7 @@ public class Interfaz {
                     break;
                 case "X":
                     termino = true;
-                    Auxiliar.imprimirTitulo("Ganó el jugador: "+partida.eligioPerder());       
+                    Auxiliar.imprimirTitulo("Perdió el jugador/a: "+partida.getJugadorActual());       
                     break;
                 case "E":
                     termino = true;
