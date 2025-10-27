@@ -325,6 +325,8 @@ public class Interfaz {
                     if(quiso.equalsIgnoreCase("S")){
                         Auxiliar.imprimirTitulo("Empataron");
                         termino=true;
+                    }else{
+                        partida.getTablero().cambiarTurno();
                     }
                     
                     break;
