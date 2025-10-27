@@ -53,7 +53,7 @@ public class Jugador implements Comparable<Jugador>{
     }
     @Override
     public String toString() {
-        return this.nombre + " cantjugadas: " + cantJugadas + " cantGanadas: "+ cantGanadas ;
+        return this.nombre + " - cantidad de partidas jugadas: " + cantJugadas + " - cantidad de partidas ganadas: "+ cantGanadas ;
     }
     @Override
     public int compareTo(Jugador j){

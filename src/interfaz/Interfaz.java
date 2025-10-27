@@ -74,14 +74,10 @@ public class Interfaz {
             }
         }
     }
-    public int validarNumeroJugador(){
-        return 0;
-        }
     
     public boolean ingresarJugadoresNuevaPartida(){
         boolean imprimio =Auxiliar.imprimirLista(sistema.ordenarAlfabetic(), "Se necesitan al menos dos jugadores", 2);
         
-        String mensajeError = "Elija un número de los que aparecen en la lista";
         return imprimio;
     }
     public Partida empezarPartida(){
@@ -105,7 +101,7 @@ public class Interfaz {
               
         return part;
         
-        }
+    }
     public void mostrarTurno(Partida partida){
         String ret ="Es el turno del jugador "+ partida.jugadorBlaONeg() + " (" + partida.getJugadorActual().getNombre() + ")";
         Auxiliar.imprimirSubtitulo(ret);
@@ -235,9 +231,9 @@ public class Interfaz {
             }
         return cadenasPosibles;
              
-}
+    }
 
-  public boolean ganoAlguien(Jugador jugador){
+    public boolean ganoAlguien(Jugador jugador){
       boolean gano = false;
       if(jugador != null){
         gano = true;
@@ -246,112 +242,109 @@ public class Interfaz {
         
      }
       return gano;
-  } 
+    } 
 
 
-    public boolean leerEntrada(Partida partida){
+    public boolean leerEntrada(Partida partida) {
         boolean termino = false;
-        String [][] matrizLogica = partida.getTablero().getMatrizLogica();
+        String[][] matrizLogica = partida.getTablero().getMatrizLogica();
         String opcion = "";
-        String jugada="";
-        if(partida.getTablero().empataron()){
+        String jugada = "";
+        if (partida.getTablero().empataron()) {
             opcion = "E";
             termino = true;
-        }else{
+        } else {
             System.out.println("");
-            opcion=Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "El/Los caracter/es ingresados no son válidos. "+ mostrarMenuJugando());
-            jugada="";
-            if(opcion.length()==3){
-                jugada=opcion;
-                opcion="J";
-            
+            opcion = Auxiliar.ingresarLetra("Ingrese jugada", generarArrayOpcionesValidas(), "El/Los caracter/es ingresados no son válidos. " + mostrarMenuJugando());
+            jugada = "";
+            if (opcion.length() == 3) {
+                jugada = opcion;
+                opcion = "J";
+
             }
-            
+
         }
-        
-            switch (opcion.toUpperCase()) {
-                case "J":                   
-                    
-                    Auxiliar.imprimirTitulo("JUGANDO...");
-                    
-                        if (jugada.toUpperCase().charAt(2)=='I') {
-                            if(!partida.getTablero().puedoInvertirFicha(jugada)){
-                                Auxiliar.imprimirSubtitulo("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
-                            }else {
-                                Auxiliar.imprimirSubtitulo("Ficha invertida con éxito");
-                                Jugador jugadorGanador = partida.ganador();
-                                if(ganoAlguien(jugadorGanador)){
-                                    termino = true;
-                                    System.out.print(mostrarMatrizLogica(partida));
 
-                                }
-                            }
-                        }else{
+        switch (opcion.toUpperCase()) {
+            case "J":
 
+                Auxiliar.imprimirTitulo("JUGANDO...");
 
-                            if(!partida.getTablero().agregarMovimiento(jugada)){
-                                Auxiliar.imprimirSubtitulo("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
-                            }else{
-                                Jugador jugadorGanador = partida.ganador();
-                                if(ganoAlguien(jugadorGanador)){
-                                    termino = true;
-                                    System.out.print(mostrarMatrizLogica(partida));
+                if (jugada.toUpperCase().charAt(2) == 'I') {
+                    if (!partida.getTablero().puedoInvertirFicha(jugada)) {
+                        Auxiliar.imprimirSubtitulo("No se puede invertir eso porque usted no colocó una ficha ahí anteriormente");
+                    } else {
+                        Auxiliar.imprimirSubtitulo("Ficha invertida con éxito");
+                        Jugador jugadorGanador = partida.ganador();
+                        if (ganoAlguien(jugadorGanador)) {
+                            termino = true;
+                            System.out.print(mostrarMatrizLogica(partida));
 
-                               }
-
-                            }
-                            
-                        
                         }
-                    
-                    
-                    break;
-                case "B"://se muestran filas y columnas
-                    partida.getTablero().setMostrarFilasYColumnas(true);
-                    mostrarMatrizLogica(partida);
-                    System.out.println("");
-                    break;
-                case "N"://se ocultan filas y columans
-                    partida.getTablero().setMostrarFilasYColumnas(false);
-                    mostrarMatrizLogica(partida);
-                    System.out.println("");
-                    break;
-                case "T":
-                    System.out.println("Seleccionó empatar");
-                    String [] opci={"s","n"};
+                    }
+                } else {
+
+                    if (!partida.getTablero().agregarMovimiento(jugada)) {
+                        Auxiliar.imprimirSubtitulo("No puede colocar una ficha en ese lugar, porque ya hay una, ingrese una ficha en otro lugar");
+                    } else {
+                        Jugador jugadorGanador = partida.ganador();
+                        if (ganoAlguien(jugadorGanador)) {
+                            termino = true;
+                            System.out.print(mostrarMatrizLogica(partida));
+
+                        }
+
+                    }
+
+                }
+
+                break;
+            case "B"://se muestran filas y columnas
+                partida.getTablero().setMostrarFilasYColumnas(true);
+                mostrarMatrizLogica(partida);
+                System.out.println("");
+                break;
+            case "N"://se ocultan filas y columans
+                partida.getTablero().setMostrarFilasYColumnas(false);
+                mostrarMatrizLogica(partida);
+                System.out.println("");
+                break;
+            case "T":
+                System.out.println("Seleccionó empatar");
+                String[] opci = {"s", "n"};
+                partida.getTablero().cambiarTurno();
+                mostrarTurno(partida);
+                String quiso = Auxiliar.ingresarLetra("Confirma que desea empatar? S/N", opci, "Debe ingresar S o N");
+                if (quiso.equalsIgnoreCase("S")) {
+                    Auxiliar.imprimirTitulo("Empataron");
+                    termino = true;
+                } else {
                     partida.getTablero().cambiarTurno();
-                    mostrarTurno(partida);
-                    String quiso=Auxiliar.ingresarLetra("Confirma que desea empatar? S/N",opci , "Debe ingresar S o N");
-                    if(quiso.equalsIgnoreCase("S")){
-                        Auxiliar.imprimirTitulo("Empataron");
-                        termino=true;
-                    }else{
-                        partida.getTablero().cambiarTurno();
-                    }
-                    
-                    break;
-                case "H":
-                    System.out.println("Seleccionó ayuda");
-                    if(partida.getTablero().movimientoAyuda()==null){
-                        Auxiliar.imprimirSubtitulo("No hay jugada posible para ganar");
-                    }else{
-                        Auxiliar.imprimirSubtitulo("La jugada ganadora es: "+ partida.getTablero().movimientoAyuda());
-                    }
-                    break;
-                case "X":
-                    termino = true;
-                    Auxiliar.imprimirTitulo("Perdió el jugador/a: "+partida.getJugadorActual());       
-                    break;
-                case "E":
-                    termino = true;
-                    Auxiliar.imprimirTitulo("Empataron porque se lleno el tablero");
-                default:
-                    Auxiliar.imprimirSubtitulo("Las opciones válidas son: "+ mostrarMenuJugando());
-                    break;
-                    
-            }
-            return termino;
+                }
+
+                break;
+            case "H":
+                System.out.println("Seleccionó ayuda");
+                if (partida.getTablero().movimientoAyuda() == null) {
+                    Auxiliar.imprimirSubtitulo("No hay jugada posible para ganar");
+                } else {
+                    Auxiliar.imprimirSubtitulo("La jugada ganadora es: " + partida.getTablero().movimientoAyuda());
+                }
+                break;
+            case "X":
+                termino = true;
+                Auxiliar.imprimirTitulo("Perdió el jugador/a: " + partida.getJugadorActual());
+                break;
+            case "E":
+                termino = true;
+                Auxiliar.imprimirTitulo("Empataron porque se lleno el tablero");
+            default:
+                Auxiliar.imprimirSubtitulo("Las opciones válidas son: " + mostrarMenuJugando());
+                break;
+
         }
+        return termino;
+    }
      public void registrarJugador () {
         Auxiliar.imprimirTitulo("Registrar jugador");
         String regex = "^[a-zA-Z]+$";
